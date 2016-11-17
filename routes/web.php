@@ -11,6 +11,18 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//Route for register testing
 Route::get('/', function () {
-    return view('welcome');
+    return view('register');
 });
+
+
+Route::resource('register','RegistrationController');
+
+//Auth::routes();
+
+Route::get('/home', 'HomeController@index');
