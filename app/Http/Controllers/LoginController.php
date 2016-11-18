@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User; //user Model
+
 class LoginController extends Controller
 {
     /**
@@ -41,7 +43,15 @@ class LoginController extends Controller
         $email    = $request->input('email');
         $password = $request->input('password');
 
+        $user = User::where("email", "=", $email)
+                    ->get()->first();
 
+        if($user->password == $password)
+            echo "Login Success";
+        else{
+            echo "Login Failed";
+            return view('user_portal.login');
+        }
     }
 
     /**
