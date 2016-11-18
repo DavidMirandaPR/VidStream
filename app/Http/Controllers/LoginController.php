@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User; //User Model
+use App\User; //user Model
 
-class RegistrationController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        return view('user_portal.registration');
+        return view('user_portal.login');
     }
 
     /**
@@ -25,7 +25,7 @@ class RegistrationController extends Controller
      */
     public function create()
     {
-      echo "create";
+        //
     }
 
     /**
@@ -36,32 +36,22 @@ class RegistrationController extends Controller
      */
 
     //======================
-    //        POST
+    //          POST
     //======================
-
     public function store(Request $request)
     {
-      //==========================
-      //Acquiring Data from Post
-      //==========================
-      $firstName = $request->input('firstName');
-      $lastName  = $request->input('lastName');
-      $email     = $request->input('email');
-      $password  = $request->input('password');
-      $level = 1;
-      //==============================================
-      //Creating a User instance with table attributes
-      //==============================================
-      $user = new User();
+        $email    = $request->input('email');
+        $password = $request->input('password');
 
-      $user->firstName = $firstName;
-      $user->lastName  = $lastName;
-      $user->email     = $email;
-      $user->password  = $password;
-      $user->level     = 1;
-      //Saving User isntance to DB
-      $user->save();
+        $user = User::where("email", "=", $email)
+                    ->get()->first();
 
+        if($user->password == $password)
+            echo "Login Success";
+        else{
+            echo "Login Failed";
+            return view('user_portal.login');
+        }
     }
 
     /**
@@ -72,7 +62,7 @@ class RegistrationController extends Controller
      */
     public function show($id)
     {
-      echo "show";
+        //
     }
 
     /**
@@ -83,7 +73,7 @@ class RegistrationController extends Controller
      */
     public function edit($id)
     {
-      echo "edit";
+        //
     }
 
     /**
@@ -95,7 +85,7 @@ class RegistrationController extends Controller
      */
     public function update(Request $request, $id)
     {
-      echo "update";
+        //
     }
 
     /**
@@ -106,6 +96,6 @@ class RegistrationController extends Controller
      */
     public function destroy($id)
     {
-      echo "destroy";
+        //
     }
 }
