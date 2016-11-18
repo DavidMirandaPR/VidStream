@@ -17,7 +17,7 @@
 
 //Route for register testing
 Route::get('/', function () {
-    return view('register');
+    return view('user_portal.registration');
 });
 
 
