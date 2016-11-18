@@ -11,18 +11,16 @@
 |
 */
 
+//Route for register testing
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('register');
 // });
 
-//Route for register testing
-Route::get('/', function () {
-    return view('register');
-});
 
-
+//RESTful Controller @ VidStream.tv/register
 Route::resource('register','RegistrationController');
 
-//Auth::routes();
+//RESTful Controller @ VidStream.tv/login
+Route::resource('login','LoginController');
 
 Route::get('/home', 'HomeController@index');
