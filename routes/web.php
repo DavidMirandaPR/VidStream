@@ -12,18 +12,13 @@
 */
 
 //Route for register testing
-// Route::get('/', function () {
-//     return view('register');
-// });
-
-<<<<<<< HEAD
-//Route for register testing
 Route::get('/', function () {
     return view('user_portal.registration');
 });
 
-=======
->>>>>>> adf11ba40e33038887bcd7e2ca82986bed926f85
+//RESTful Controller @ VidStream.tv/content
+Route::resource('content','ContentController');
+
 
 //RESTful Controller @ VidStream.tv/register
 Route::resource('register','RegistrationController');
