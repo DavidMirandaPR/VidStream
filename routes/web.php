@@ -31,6 +31,7 @@ Route::get('/home', 'HomeController@index');
 Route::group(['prefix' => 'api'], function () {
 	// Api: Version 1 	
 	Route::group(['prefix' => 'v1'], function () {
+		//RESTful Controller @ Vidstream.tv/api/v1/getinfo
 		Route::resource('getinfo','APIController');
 	});
 });

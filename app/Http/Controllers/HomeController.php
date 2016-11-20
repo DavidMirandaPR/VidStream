@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class APIController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class APIController extends Controller
      */
     public function index()
     {
-        return view('search.content');
+        return view('content-data.content');
     }
 
     /**
@@ -23,7 +23,7 @@ class APIController extends Controller
      */
     public function create()
     {
-        echo "API create";
+        //
     }
 
     /**
@@ -32,25 +32,11 @@ class APIController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    //============================
-    //          POST    
-    //Function used to populate DB with movies/series
-    //============================
     public function store(Request $request)
     {
-        $title = $request->input('Title');
-        
-        //Title Parameter
-        $url   = "http://www.omdbapi.com/?t=".rawurlencode($title);
-
-        //Search Parameter
-        //$url   = "http://www.omdbapi.com/?s=".rawurlencode($title);
-        $json = file_get_contents($url);
-        $obj = json_decode($json, true);
-        //echo $obj['Actors'];
-        dd($obj);
+        //
     }
+
     /**
      * Display the specified resource.
      *
@@ -59,7 +45,7 @@ class APIController extends Controller
      */
     public function show($id)
     {
-        echo "API Show";
+        //
     }
 
     /**
@@ -70,7 +56,7 @@ class APIController extends Controller
      */
     public function edit($id)
     {
-        echo "API edit";
+        //
     }
 
     /**
@@ -82,7 +68,7 @@ class APIController extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo "API update";
+        //
     }
 
     /**
@@ -93,6 +79,6 @@ class APIController extends Controller
      */
     public function destroy($id)
     {
-        echo "API delete";
+        //
     }
 }

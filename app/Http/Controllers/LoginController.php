@@ -43,14 +43,12 @@ class LoginController extends Controller
         $email    = $request->input('email');
         $password = $request->input('password');
 
-        $user = User::where("email", "=", $email)
-                    ->get()->first();
+        $user = User::where("email", "=", $email)->get()->first();
 
         if($user->password == $password)
-            echo "Login Success";
+            return redirect('/home')->with('status', 'Login Success!');
         else{
-            echo "Login Failed";
-            return view('user_portal.login');
+            return redirect('/login')->with('message', 'Login Failed.');
         }
     }
 

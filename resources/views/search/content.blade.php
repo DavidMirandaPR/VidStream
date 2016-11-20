@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<form method="POST"	action="/content">
+<form method="POST"	action="/api/v1/getinfo">
 <div>
 	Search for a title
 </div>

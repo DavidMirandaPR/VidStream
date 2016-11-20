@@ -19,7 +19,7 @@ class CreateGenresTable extends Migration
             $table->timestamps();
 
             //Adding Primary Key to the Table 'content'
-            //$table->primary('genre_id');
+            $table->primary('genre_id');
         });    
     }
 

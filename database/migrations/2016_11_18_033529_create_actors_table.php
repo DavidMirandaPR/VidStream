@@ -19,7 +19,7 @@ class CreateActorsTable extends Migration
             $table->timestamps();
 
             //Adding Primary Key to the Table 'content'
-            //$table->primary('actor_id');
+            $table->primary('actor_id');
         });    
     }
 
