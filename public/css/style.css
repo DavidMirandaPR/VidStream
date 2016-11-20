@@ -1,5 +1,30 @@
-.black-box {
-	height: 100px;
-	width: 100px;
-	background: black
+
+/* Navigation bar*/
+.nav-wrapper {
+	background-color: #FF424F;
+}
+
+@media (min-width: 993px){
+	.brand-logo {
+		margin-left: 10px;
+	}
+}
+
+
+
+/* Registration Page */
+/* Registration Form */
+
+
+/* Footer */
+.page-footer {
+	background-color: #FF424F;
+}
+
+
+/* Login Page */
+.test{
+	width: 200px;
+	height: 200px;
+	background-color: black;
 }

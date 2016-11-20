@@ -1,11 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\User; //User Model
-
 class RegistrationController extends Controller
 {
     /**
@@ -15,9 +11,8 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        return view('user_portal.registration');
+        return view('user-portal.registration');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -27,18 +22,15 @@ class RegistrationController extends Controller
     {
       echo "create";
     }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     //======================
     //        POST
     //======================
-
     public function store(Request $request)
     {
       //==========================
@@ -53,7 +45,6 @@ class RegistrationController extends Controller
       //Creating a User instance with table attributes
       //==============================================
       $user = new User();
-
       $user->firstName = $firstName;
       $user->lastName  = $lastName;
       $user->email     = $email;
@@ -61,9 +52,7 @@ class RegistrationController extends Controller
       $user->level     = 1;
       //Saving User isntance to DB
       $user->save();
-
     }
-
     /**
      * Display the specified resource.
      *
@@ -74,7 +63,6 @@ class RegistrationController extends Controller
     {
       echo "show";
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -85,7 +73,6 @@ class RegistrationController extends Controller
     {
       echo "edit";
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -97,7 +84,6 @@ class RegistrationController extends Controller
     {
       echo "update";
     }
-
     /**
      * Remove the specified resource from storage.
      *
