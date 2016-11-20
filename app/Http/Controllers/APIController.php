@@ -45,7 +45,7 @@ class APIController extends Controller
             $json = file_get_contents($url);
             $obj = json_decode($json, true);
 
-            if($obj['Type'] == 'movie' || $c['title'] == NULL)
+            if($obj['Type'] == 'movie' && $c['title'] != NULL)
             {
                 //Store Attributes changes
                 for ($i=0; $i < 16; $i++) { 
