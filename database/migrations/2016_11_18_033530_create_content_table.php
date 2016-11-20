@@ -36,11 +36,11 @@ class CreateContentTable extends Migration
             //Adding Primary Key to the Table 'content'
             $table->primary('imdbID');
             //Foreign Keys
-            $table->foreign('genre')
-                  ->references('genre_id')->on('genres');
+            // $table->foreign('genre')
+            //       ->references('genre_id')->on('genres');
 
-            $table->foreign('actors')
-                  ->references('actor_id')->on('actors');
+            // $table->foreign('actors')
+            //       ->references('actor_id')->on('actors');
 
         });
       

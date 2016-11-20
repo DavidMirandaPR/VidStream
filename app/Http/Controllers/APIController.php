@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ContentController extends Controller
+class APIController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        return view('content-data.content');
+        echo "API Index";
     }
 
     /**
@@ -23,7 +23,7 @@ class ContentController extends Controller
      */
     public function create()
     {
-        //
+        echo "API create";
     }
 
     /**
@@ -35,12 +35,22 @@ class ContentController extends Controller
 
     //============================
     //          POST    
+    //Function used to populate DB with movies/series
     //============================
     public function store(Request $request)
     {
+        $title = $request->input('Title');
+        
+        //Title Parameter
+        $url   = "http://www.omdbapi.com/?t=".rawurlencode($title);
 
+        //Search Parameter
+        //$url   = "http://www.omdbapi.com/?s=".rawurlencode($title);
+        $json = file_get_contents($url);
+        $obj = json_decode($json, true);
+        //echo $obj['Actors'];
+        dd($obj);
     }
-
     /**
      * Display the specified resource.
      *
@@ -49,7 +59,7 @@ class ContentController extends Controller
      */
     public function show($id)
     {
-        //
+        echo "API Show";
     }
 
     /**
@@ -60,7 +70,7 @@ class ContentController extends Controller
      */
     public function edit($id)
     {
-        //
+        echo "API edit";
     }
 
     /**
@@ -72,7 +82,7 @@ class ContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        echo "API update";
     }
 
     /**
@@ -83,6 +93,6 @@ class ContentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        echo "API delete";
     }
 }

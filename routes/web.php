@@ -10,24 +10,28 @@
 |
 */
 
-<<<<<<< HEAD
 //Route for register testing
 Route::get('/', function () {
-    return view('user_portal.registration');
+    return view('user-portal.login');
 });
 
 //RESTful Controller @ VidStream.tv/content
 Route::resource('content','ContentController');
 
-
-=======
-Route::get('content', function(){
-	return view('content-data.content');
-});
-
->>>>>>> c6589cc8a349b4ed2efd5c65bf869381dc92ea81
 //RESTful Controller @ VidStream.tv/register
 Route::resource('register','RegistrationController');
+
 //RESTful Controller @ VidStream.tv/login
 Route::resource('login','LoginController');
+
+//Default Home Controller
 Route::get('/home', 'HomeController@index');
+
+// Api Routes
+Route::group(['prefix' => 'api'], function () {
+	// Api: Version 1 	
+	Route::group(['prefix' => 'v1'], function () {
+		Route::resource('getinfo','APIController');
+	});
+});
+
