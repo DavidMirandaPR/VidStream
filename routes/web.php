@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +10,7 @@
 |
 */
 
+<<<<<<< HEAD
 //Route for register testing
 Route::get('/', function () {
     return view('user_portal.registration');
@@ -20,10 +20,14 @@ Route::get('/', function () {
 Route::resource('content','ContentController');
 
 
+=======
+Route::get('content', function(){
+	return view('content-data.content');
+});
+
+>>>>>>> c6589cc8a349b4ed2efd5c65bf869381dc92ea81
 //RESTful Controller @ VidStream.tv/register
 Route::resource('register','RegistrationController');
-
 //RESTful Controller @ VidStream.tv/login
 Route::resource('login','LoginController');
-
 Route::get('/home', 'HomeController@index');
