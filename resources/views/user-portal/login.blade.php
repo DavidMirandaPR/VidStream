@@ -1,5 +1,13 @@
 @extends('layouts.layout')
 @section('title', 'Login')
+@section('header')
+<!--Vegas CSS-->
+<link rel="stylesheet" href="/js/vegas/vegas.min.css">
+<!--Vegas Script-->
+<script src="/js/vegas/vegas.min.js"></script>
+<!--Background Script-->
+<script src="js/background.js"></script>
+@endsection
 @section('content')
 
 <div class="container">
