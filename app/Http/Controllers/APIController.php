@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Content;
+
+use App\Movies;
+
 class APIController extends Controller
 {
     /**
@@ -39,17 +43,34 @@ class APIController extends Controller
     //============================
     public function store(Request $request)
     {
-        $title = $request->input('Title');
+        //$title = $request->input('Title');
         
         //Title Parameter
-        $url   = "http://www.omdbapi.com/?t=".rawurlencode($title);
+        $movies = Movies::get();
+
+
+
+        foreach ($movies as $m) {
+            $url = "http://www.omdbapi.com/?s=".rawurlencode($m['title']);
+            $json = file_get_contents($url);
+            $obj = json_decode($json, true);
+            dd($obj);
+            exit;
+
+
+
+        }
+        exit;
+
+
+        
 
         //Search Parameter
         //$url   = "http://www.omdbapi.com/?s=".rawurlencode($title);
         $json = file_get_contents($url);
         $obj = json_decode($json, true);
         //echo $obj['Actors'];
-        dd($obj);
+        echo $obj['Title'];
     }
     /**
      * Display the specified resource.
