@@ -13,7 +13,11 @@ class ContentController extends Controller
      */
     public function index()
     {
-        return view('content-data.content');
+        $data['movies'] = Content::where('genre', 'LIKE', '%Comedy%')
+                        ->orderBy('year', 'desc')
+                        ->limit(100)->get();
+    
+        return view('content-data.content', $data);
     }
 
     /**

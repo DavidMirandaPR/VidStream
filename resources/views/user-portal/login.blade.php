@@ -10,6 +10,7 @@
 @endsection
 @section('content')
 
+
 	<div class="portal-page z-depth-2">
 		<div class="container">
 			<div class="row">
