@@ -2,30 +2,25 @@
 @section('title', 'Content')
 @section('content')
 
+<main>
 
-<h1>Test!</h1>
+	<div class="">
+		<div>
+			@foreach ($genres as $g)
+				<h1>{{ $g }}</h1>
+				@foreach ($data as $d)
+					@for ($i=0; $i < 4; $i++)
+						<img src="{{$d[$i]->poster}}" width="100px" height="100px" alt="{{$d[$i]->title}}"/>
+					@endfor
 
-<div>
-<h4>ACTION</h4>
-	@foreach ($action as $a)
-	<a href="http://www.imdb.com/title/{{$a->imdbID}}">
-            <img src="{{$a->poster}}" width="100px" height="100px" alt="{{$a->title}}"/>
-	</a>
-    @endforeach	
-</div>
+				@endforeach
 
-<div>
-<h4>COMEDY</h4>
-	@foreach ($comedy as $c)
-            <img src="{{$c->poster}}" width="100px" height="100px" alt="{{$c->title}}"/>
-    @endforeach
-</div>
+		  @endforeach
+		</div>
 
-<div>
-<h4>HORROR</h4>
-	@foreach ($horror as $h)
-            <img src="{{$h->poster}}" width="100px" height="100px" alt="{{$h->title}}"/>
-    @endforeach
-</div>
+	</div>
+</main>
+
+
 
 @endsection

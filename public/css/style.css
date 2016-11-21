@@ -1,10 +1,12 @@
 html, body {
 	height: 100%;
-	margin: 0;
+	margin: 0px;
+	padding: 0px;
+	background-color: #212121;
 }
 
 main {
-	min-height: 100%;
+	height: 100%;
 	position: relative;
 }
 /* Navigation bar*/
@@ -44,6 +46,9 @@ main {
 	color: #212121;
 }
 
+/* Content Page */
+.content-page {
+}
 /* Footer */
 .page-footer {
 	background-color: #FF424F;

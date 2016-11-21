@@ -56,10 +56,8 @@
 
 	    </nav>
 		</header>
-		<main>
 			@section('content')
 			@show
-		</main>
 
 		<footer class="page-footer">
 			<div class="container">

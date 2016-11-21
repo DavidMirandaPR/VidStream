@@ -10,35 +10,36 @@
 @endsection
 @section('content')
 
-<!--Register Form -->
-<div class="portal-page z-depth-2">
-	<div class="container">
-		<div class="row">
-			<form class="col s12" action="/register" method="POST">
-					<div class="row">
-						<div class="input-field col s6">
-							<input type="text" name="firstName" value="">
-							<label for="firstName">First Name</label>
+<main>
+	<!--Register Form -->
+	<div class="portal-page z-depth-2">
+		<div class="container">
+			<div class="row">
+				<form class="col s12" action="/register" method="POST">
+						<div class="row">
+							<div class="input-field col s6">
+								<input type="text" name="firstName" value="">
+								<label for="firstName">First Name</label>
+							</div>
+							<div class="input-field col s6">
+								<input type="text" name="lastName" value="">
+								<label for="lastName">Last Name</label>
+							</div>
+							<div class="input-field col s12">
+								<input type="email" name="email" value="">
+								<label for="email">Email</label>
+							</div>
+							<div class="input-field col s12">
+								<input type="password" name="password" value="">
+								<label for="password">Password</label>
+							</div>
+							<button class="btn submit-btn" type="submit" name="action">Register</button>
 						</div>
-						<div class="input-field col s6">
-							<input type="text" name="lastName" value="">
-							<label for="lastName">Last Name</label>
-						</div>
-						<div class="input-field col s12">
-							<input type="email" name="email" value="">
-							<label for="email">Email</label>
-						</div>
-						<div class="input-field col s12">
-							<input type="password" name="password" value="">
-							<label for="password">Password</label>
-						</div>
-						<button class="btn submit-btn" type="submit" name="action">Register</button>
-					</div>
-				<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-			</form>
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
-
+</main>
 
 @endsection

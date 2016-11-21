@@ -10,7 +10,7 @@
 @endsection
 @section('content')
 
-
+<main>
 	<div class="portal-page z-depth-2">
 		<div class="container">
 			<div class="row">
@@ -31,5 +31,5 @@
 			</div>
 		</div>
 	</div>
-
+</main>
 @endsection
