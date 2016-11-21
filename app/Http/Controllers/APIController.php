@@ -19,9 +19,8 @@ class APIController extends Controller
      */
     public function index()
     {
-        $data['movies'] = Content::
-        //where('genre', 'LIKE', '%Action%')
-                        orderBy('year', 'desc')
+        $data['movies'] = Content::where('genre', 'LIKE', '%Comedy%')
+                        ->orderBy('year', 'desc')
                         ->limit(100)->get();
         return view('search.content', $data);
     }
