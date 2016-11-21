@@ -19,7 +19,10 @@ class APIController extends Controller
      */
     public function index()
     {
-        return view('search.content');
+        $data['movies'] = Content::where('genre', 'LIKE', '%Action%')
+                        ->orderBy('year', 'desc')
+                        ->limit(100)->get();
+        return view('search.content', $data);
     }
 
     /**
@@ -37,24 +40,27 @@ class APIController extends Controller
         $DBatt = ['title','year','rated','released','runtime','genre','director',
                 'writer','actors','plot','language','awards','poster','imdbRating',
                 'imdbVotes','type'];
-    
 
         foreach($content as $c)
-        {   echo $c->imdbID;
-            $url = "http://www.omdbapi.com/?i=".$c->imdbID;
-            $json = file_get_contents($url);
-            $obj = json_decode($json, true);
-
-            if($obj['Type'] == 'movie' && $c['title'] != NULL)
+        {   
+            if($c['title'] == null)
             {
-                //Store Attributes changes
-                for ($i=0; $i < 16; $i++) { 
-                    $cont = Content::where('imdbID', '=', $obj['imdbID'])
-                            ->whereNull($DBatt[$i])
-                            ->update([$DBatt[$i] => $obj[$att[$i]]]);
+                $url = "http://www.omdbapi.com/?i=".$c->imdbID;
+                $json = file_get_contents($url);
+                $obj = json_decode($json, true);
+    
+                if($obj['Type'] == 'movie' && $c['Type'] == null)
+                {
+                    //Store Attributes changes
+                    for ($i=0; $i < 16; $i++) { 
+                        $cont = Content::where('imdbID', '=', $obj['imdbID'])
+                                ->whereNull($DBatt[$i])
+                                ->update([$DBatt[$i] => $obj[$att[$i]]]);
+                    }
                 }
             }
         }
+        echo $count;
     }
 
     /**
@@ -70,13 +76,52 @@ class APIController extends Controller
     //============================
     public function store(Request $request)
     {
-        //$title = $request->input('Title');
-        
-        //Title Parameter
-        $movies = Movies::get();
+        if($request->input('Title') != '')
+        {
+            $title = $request->input('Title');
+            $att = ['Title','Year','Rated','Released','Runtime','Genre','Director',
+                    'Writer','Actors','Plot','Language','Awards','Poster','imdbRating',
+                    'imdbVotes','Type'];
 
-        foreach ($movies as $m) {
+            $DBatt = ['title','year','rated','released','runtime','genre','director',
+                    'writer','actors','plot','language','awards','poster','imdbRating',
+                    'imdbVotes','type'];
 
+            $url = "http://www.omdbapi.com/?t=".rawurlencode($title);
+            $json = file_get_contents($url);
+            $obj = json_decode($json, true);
+            echo "Outside IF";
+            $cont = Content::where('imdbID', '=', $obj['imdbID']);
+            if($obj['poster'] == 'N/A')
+            {
+                echo "No poster Found in ".$obj['Title'];
+            }
+            else if($cont == null)
+            {
+                echo "Instance not found in DB <br>";
+            }else
+            {   
+                echo "Creating new Instante with the imdbID attribute";
+                $content = new Content;
+                $content->imdbID = $obj['imdbID'];
+                $content->save();
+
+                for ($i=0; $i < 16; $i++) 
+                {
+                    echo "Updating the ".$Datt[$i]." of the instance <br>";
+                    $c = Content::where('imdbID', '=', $obj['imdbID'])
+                            ->whereNull($DBatt[$i])
+                            ->update([$DBatt[$i] => $obj[$att[$i]]]);
+                }
+            }
+        }
+        else
+        {  
+           //Title Parameter
+           $movies = Movies::get();
+  
+           foreach ($movies as $m) {
+  
             $url = "http://www.omdbapi.com/?t=".rawurlencode($m['title']);
             $json = file_get_contents($url);
             $obj = json_decode($json, true);
@@ -88,7 +133,8 @@ class APIController extends Controller
             }
         }
     }
-       
+}
+   
     /**
      * Display the specified resource.
      *
@@ -97,7 +143,46 @@ class APIController extends Controller
      */
     public function show($id)
     {
-        echo "API Show";
+     //------------URL STATUS CHECKER--------------------   
+
+        // $instance = Content::where('imdbID', '=', 'tt0138862')
+        //             ->get()->first();
+        // //echo $instance['poster'];
+        // $url = $instance['poster'];
+
+        // //=====================================
+        //     $ch = curl_init();
+        //     curl_setopt($ch, CURLOPT_URL, $url);
+        //     curl_setopt($ch, CURLOPT_HEADER, 1);
+        //     curl_setopt($ch , CURLOPT_RETURNTRANSFER, 1);
+        //     $data = curl_exec($ch);
+        //     $headers = curl_getinfo($ch);
+        //     curl_close($ch);
+        // //======================================
+
+
+
+        // $check_url_status = $headers['http_code'];
+
+        // if ($check_url_status == '200')
+        //    echo "Link Works";
+        // else
+        //    echo "Broken Link";
+     //------------------------------------------------------------
+
+
+
+     //-------------NO POSTER AND NULL INSTANCES CHECKER ----------
+        // $noPoster = Content::where('poster','=', 'N/A')
+        //                 ->delete();
+        // echo "Delete of Instances with no poster COMPLETED <br>";
+
+        // $noTitle  = Content::where('title', '=', null)
+        //                 ->delete();
+        // echo "Delete of Instances with no title COMPLETED <br>";
+     //------------------------------------------------------------
+
+
     }
 
     /**

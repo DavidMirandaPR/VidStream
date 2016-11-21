@@ -29,7 +29,7 @@
 		</div>
 </div>
 <div class="container">
-	<form class="regForm" action="/login" method="post">
+	<form class="regForm" action="/register" method="POST">
 
 	  <div class="email">
 	    E-Mail

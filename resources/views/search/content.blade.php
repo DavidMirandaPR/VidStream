@@ -10,7 +10,7 @@
 		First : Get the imdbID's then Get the Data
 	</div>
 	<div>
-		<input type="hidden" name="Title" value="">
+		<input type="text" name="Title" value="">
 	</div>
 	<div>
 		<input type="Submit" name="getid" value="Get imbdID's">
@@ -22,6 +22,11 @@
 		<input type="Submit" name="getdata" value="Get the imdbID movies INFO">
 	</div>
 </form>
+	@foreach ($movies as $movie)
+			<!-- {{$movie->imdbID}} -->
+            <img src="{{$movie->poster}}" width="250px" height="250px" alt="{{$movie->title}}"/>     
+    @endforeach	
+
 </body>
 </html>
 

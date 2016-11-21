@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('user-portal.login');
 });
 
+
+//===============================================
+//	Note: Add Constraints to resource controllers
+//===============================================
 //RESTful Controller @ VidStream.tv/content
 Route::resource('content','ContentController');
 
