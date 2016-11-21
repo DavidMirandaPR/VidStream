@@ -1,5 +1,11 @@
-body {
-	height: 100vh;
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+main {
+	min-height: 100%;
+	position: relative;
 }
 /* Navigation bar*/
 .nav-wrapper {
@@ -12,21 +18,34 @@ body {
 	}
 }
 
+/* Registration and Login Form  */
 
+.input-field {
+	color: #EEEEEE;
+}
+.portal-page {
+	opacity: 0.8;
+	background-color: #212121;
+	width: 400px;
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 
-/* Registration Page */
-/* Registration Form */
+@media (max-width: 414px){
+	.portal-page{
+		width: 100%
+	}
+}
+.submit-btn {
+	text-align: center;
+	background-color: #EEEEEE;
+	color: #212121;
+}
 
 
 /* Footer */
 .page-footer {
 	background-color: #FF424F;
-}
-
-
-/* Login Page */
-.test{
-	width: 200px;
-	height: 200px;
-	background-color: black;
 }
