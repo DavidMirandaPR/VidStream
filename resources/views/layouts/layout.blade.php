@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--Import Google Icon Font-->
+		 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- jQuery-->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" charset="utf-8"></script>
-    <!--MaterializeCSS Script-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 		<!--MaterializeCSS CSS-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <!--MaterializeCSS Script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <!-- AnimateCSS animations-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.0/animate.min.css">
 
@@ -23,12 +25,16 @@
   <body>
 
 		<!-- Navigation Bar -->
-		<header>
+		<header class="z-depth-3">
 	    <nav>
 	      <div class="nav-wrapper">
 					<!-- Logo -->
-					<a href="#" class="brand-logo"> VidStream</a>
-					<!-- Nav bar Links -->
+					<a href="#!" class="brand-logo"> VidStream</a>
+					<!-- Collapsible Menu Icon -->
+					<a href="#" data-activates="mobile-collapse" class="button-collapse">
+						<i class="material-icons">menu</i>
+					</a>
+					<!-- Nav bar Links non collapsed-->
 	        <ul id="nav-mobile" class="right hide-on-med-and-down">
 	          <li class="{{ Request::is('content') ? 'active' : '' }}">
 							<a href="{{ url('/content') }}">Content</a>
@@ -40,11 +46,17 @@
 							<a href="{{ url('/register') }}">Registration</a>
 	          </li>
 	        </ul>
+					<!-- Collapesed Menu Links -->
+					<ul class="side-nav" id="mobile-collapse">
+						<li><a href="/content">Content</a></li>
+						<li><a href="/login">Login</a></li>
+						<li><a href="/register">Register</a></li>
+					</ul>
 	      </div>
 
 	    </nav>
 		</header>
-		<main>
+		<main class="z-depth-3">
 			@section('content')
 			@show
 		</main>
@@ -56,7 +68,7 @@
 						<h5 class="white-text">Vidstream</h5>
 						<p class="grey-text text-lighten-4">Say goodbye to cable tv, watch when you can, watch when you want.</p>
 						<p class="grey-text text-lighten-4">
-							Design idea taken from <a href="https://dribbble.com/shots/2786747-Shot">Ricardo Salazar</a>
+							Design inspired by <a href="https://dribbble.com/shots/2786747-Shot">Ricardo Salazar</a>
 						</p>
 					</div>
 					<div class="col l4 offset-l2 s12">
