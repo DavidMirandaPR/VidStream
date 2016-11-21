@@ -18,8 +18,11 @@ main {
 	}
 }
 
-
 /* Registration and Login Form  */
+
+.input-field {
+	color: #EEEEEE;
+}
 .portal-page {
 	opacity: 0.8;
 	background-color: #212121;
