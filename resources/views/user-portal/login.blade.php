@@ -17,11 +17,11 @@
 				<form class="col s12" action="/login" method="POST">
 						<div class="row">
 							<div class="input-field col s12">
-								<input type="email" name="email" value="">
+								<input type="email" name="email" value="david.mirandapr@gmail.com">
 								<label for="email">Email</label>
 							</div>
 							<div class="input-field col s12">
-								<input type="password" name="password" value="">
+								<input type="password" name="password" value="password">
 								<label for="password">Password</label>
 							</div>
 							<button class="btn submit-btn" type="submit" name="action">Login</button>

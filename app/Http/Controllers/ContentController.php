@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\content;
 use Illuminate\Http\Request;
 
+use App\Content;
 class ContentController extends Controller
 {
     /**
@@ -13,9 +14,16 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $data['movies'] = Content::where('genre', 'LIKE', '%Comedy%')
+        $data['action'] = Content::where('genre', 'LIKE', '%Action%')
                         ->orderBy('year', 'desc')
-                        ->limit(100)->get();
+                        ->limit(10)->get();
+        $data['comedy'] = Content::where('genre', 'LIKE', '%Comedy%')
+                        ->orderBy('year', 'desc')
+                        ->limit(10)->get();
+        $data['horror'] = Content::where('genre', 'LIKE', '%Horror%')
+                        ->orderBy('year', 'desc')
+                        ->limit(10)->get();
+
 
         return view('content-data.content', $data);
     }
