@@ -19,8 +19,9 @@ class APIController extends Controller
      */
     public function index()
     {
-        $data['movies'] = Content::where('genre', 'LIKE', '%Action%')
-                        ->orderBy('year', 'desc')
+        $data['movies'] = Content::
+        //where('genre', 'LIKE', '%Action%')
+                        orderBy('year', 'desc')
                         ->limit(100)->get();
         return view('search.content', $data);
     }
@@ -81,39 +82,30 @@ class APIController extends Controller
             $title = $request->input('Title');
             $att = ['Title','Year','Rated','Released','Runtime','Genre','Director',
                     'Writer','Actors','Plot','Language','Awards','Poster','imdbRating',
-                    'imdbVotes','Type'];
+                    'imdbVotes','Type', 'imdbID'];
 
             $DBatt = ['title','year','rated','released','runtime','genre','director',
                     'writer','actors','plot','language','awards','poster','imdbRating',
-                    'imdbVotes','type'];
+                    'imdbVotes','type', 'imdbID'];
 
             $url = "http://www.omdbapi.com/?t=".rawurlencode($title);
             $json = file_get_contents($url);
             $obj = json_decode($json, true);
-            echo "Outside IF";
-            $cont = Content::where('imdbID', '=', $obj['imdbID']);
-            if($obj['poster'] == 'N/A')
+            $cont = Content::where('imdbID', '=', $obj['imdbID'])->delete();
+            
+            echo "Creating new Instante with the imdbID attribute";
+            $content = new Content;
+            $content->imdbID = $obj['imdbID'];
+            $content->save();
+            dd($content);
+            for ($i=0; $i < 16; $i++) 
             {
-                echo "No poster Found in ".$obj['Title'];
+                echo "Updating the ".$DBatt[$i]." of the instance <br>";
+                $c = Content::where('imdbID', '=', $obj['imdbID'])
+                        ->whereNull($DBatt[$i])
+                        ->update([$DBatt[$i] => $obj[$att[$i]]]);
             }
-            else if($cont == null)
-            {
-                echo "Instance not found in DB <br>";
-            }else
-            {   
-                echo "Creating new Instante with the imdbID attribute";
-                $content = new Content;
-                $content->imdbID = $obj['imdbID'];
-                $content->save();
-
-                for ($i=0; $i < 16; $i++) 
-                {
-                    echo "Updating the ".$Datt[$i]." of the instance <br>";
-                    $c = Content::where('imdbID', '=', $obj['imdbID'])
-                            ->whereNull($DBatt[$i])
-                            ->update([$DBatt[$i] => $obj[$att[$i]]]);
-                }
-            }
+        
         }
         else
         {  
