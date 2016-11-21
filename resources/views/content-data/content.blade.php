@@ -4,6 +4,6 @@
 
 
 <h1>Test!</h1>
-
+{{ $user->email }}
 
 @endsection

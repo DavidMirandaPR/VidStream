@@ -45,8 +45,9 @@ class LoginController extends Controller
 
         if($user = User::where("email", "=", $email)->get()->first())
         {
+					$data['user'] = $user;
             if($user->password == $password)
-                return redirect('/home')->with('status', 'Login Success!');
+                return view('content-data.content', $data);
             else{
                 return redirect('/')->with('message', 'Login Failed.');
             }
