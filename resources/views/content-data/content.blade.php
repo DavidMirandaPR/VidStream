@@ -5,19 +5,27 @@
 <main>
 
 	<div class="">
+		ACTION
+
 		<div>
-			@foreach ($genres as $g)
-				<h1>{{ $g }}</h1>
-				@foreach ($data as $d)
-					@for ($i=0; $i < 4; $i++)
-						<img src="{{$d[$i]->poster}}" width="100px" height="100px" alt="{{$d[$i]->title}}"/>
-					@endfor
-
-				@endforeach
-
-		  @endforeach
+			@foreach($Action as $a)
+					<img src="{{$a->poster}}" width="100px" height="100px" alt="{{$a->title}}"/>	
+			@endforeach			
 		</div>
+		COMEDY
 
+		<div>
+			@foreach($Comedy as $c)
+					<img src="{{$c->poster}}" width="100px" height="100px" alt="{{$c->title}}"/>	
+			@endforeach	
+		</div>
+		HORROR
+		<div>
+
+			@foreach($Horror as $h)
+					<img src="{{$h->poster}}" width="100px" height="100px" alt="{{$h->title}}"/>	
+			@endforeach	
+		</div>
 	</div>
 </main>
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 
 use App\Content;
@@ -14,18 +15,17 @@ class ContentController extends Controller
     public function index()
     {
 
-			$genres['genres'] = ['Action','Drama','Horror','Adventure'];
+        $genres = ['Action','Comedy','Horror'];
+        
+        for ($i=0; $i < count($genres); $i++) { 
 
-			for ($i=0; $i < 4; $i++)
-			{
-				$data[$genres['genres'][$i]] = Content::where('genre', 'LIKE', '%'.$genres['genres'][$i].'%')
-	                      ->orderBy('year', 'desc')
-	                      ->limit(10)->get();
-			}
-			$array['data'] = $data;
-			//dd($array);
-      return view('content-data.content', $array, $genres);
-  	}
+            $data[$genres[$i]] = Content::where('genre', 'LIKE', '%'.$genres[$i].'%')
+                            ->orderBy('year', 'desc')
+                            ->limit(10)->get();
+        }
+        
+        return view('content-data.content', $data);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -45,7 +45,7 @@ class ContentController extends Controller
      */
 
     //============================
-    //          POST
+    //          POST    
     //============================
     public function store(Request $request)
     {
