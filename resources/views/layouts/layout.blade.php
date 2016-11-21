@@ -56,7 +56,7 @@
 
 	    </nav>
 		</header>
-		<main class="z-depth-3">
+		<main>
 			@section('content')
 			@show
 		</main>

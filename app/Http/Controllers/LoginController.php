@@ -43,7 +43,7 @@ class LoginController extends Controller
         $email    = $request->input('email');
         $password = $request->input('password');
 
-        if($user = User::where("email", "=", $email)->get())
+        if($user = User::where("email", "=", $email)->get()->first())
         {
             if($user->password == $password)
                 return redirect('/home')->with('status', 'Login Success!');
