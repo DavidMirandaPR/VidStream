@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\User; //user Model
 
+use App\Content;
+
 class LoginController extends Controller
 {
     /**
@@ -45,7 +47,16 @@ class LoginController extends Controller
 
         if($user = User::where("email", "=", $email)->get()->first())
         {
-					$data['user'] = $user;
+            $data['action'] = Content::where('genre', 'LIKE', '%Action%')
+                        ->orderBy('year', 'desc')
+                        ->limit(10)->get();
+            $data['comedy'] = Content::where('genre', 'LIKE', '%Comedy%')
+                        ->orderBy('year', 'desc')
+                        ->limit(10)->get();
+            $data['horror'] = Content::where('genre', 'LIKE', '%Horror%')
+                        ->orderBy('year', 'desc')
+                        ->limit(10)->get();
+
             if($user->password == $password)
                 return view('content-data.content', $data);
             else{

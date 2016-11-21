@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\content;
 use Illuminate\Http\Request;
 
 class ContentController extends Controller
@@ -16,7 +16,7 @@ class ContentController extends Controller
         $data['movies'] = Content::where('genre', 'LIKE', '%Comedy%')
                         ->orderBy('year', 'desc')
                         ->limit(100)->get();
-    
+
         return view('content-data.content', $data);
     }
 
@@ -38,7 +38,7 @@ class ContentController extends Controller
      */
 
     //============================
-    //          POST    
+    //          POST
     //============================
     public function store(Request $request)
     {
