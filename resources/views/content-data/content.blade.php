@@ -7,7 +7,9 @@
 <div>
 <h4>ACTION</h4>
 	@foreach ($action as $a)
+	<a href="http://www.imdb.com/title/{{$a->imdbID}}">
             <img src="{{$a->poster}}" width="100px" height="100px" alt="{{$a->title}}"/>     
+	</a>
     @endforeach	
 </div>
 

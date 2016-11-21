@@ -47,24 +47,17 @@ class LoginController extends Controller
 
         if($user = User::where("email", "=", $email)->get()->first())
         {
-            $data['action'] = Content::where('genre', 'LIKE', '%Action%')
-                        ->orderBy('year', 'desc')
-                        ->limit(10)->get();
-            $data['comedy'] = Content::where('genre', 'LIKE', '%Comedy%')
-                        ->orderBy('year', 'desc')
-                        ->limit(10)->get();
-            $data['horror'] = Content::where('genre', 'LIKE', '%Horror%')
-                        ->orderBy('year', 'desc')
-                        ->limit(10)->get();
-
             if($user->password == $password)
-                return view('content-data.content', $data);
+            {                
+                //return redirect('content');
+                return redirect()->route('content.index', ['user' => $user]);
+            }            
             else{
-                return redirect('/')->with('message', 'Login Failed.');
+                return view('/login');
             }
         }
         else
-            return redirect('/')->with('message', 'Login Failed.');
+            return view('/login');
     }
 
     /**
