@@ -33,6 +33,15 @@
 								<input type="password" name="password" value="">
 								<label for="password">Password</label>
 							</div>
+							<div class="input-field col s12">
+								<select multiple name="level">
+									<option value="" disabled selected>Choose Level</option>
+									<option value="1">Free</option>
+									<option value="2">Subscription</option>
+									<option value="3">Staff</option>
+								</select>
+								<label>User Level</label>
+							</div>
 							<button class="btn submit-btn" type="submit" name="action">Register</button>
 						</div>
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
