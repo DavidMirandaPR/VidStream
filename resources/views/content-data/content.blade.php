@@ -6,8 +6,8 @@
 
 	<div class="">
 		ACTION
-<iframe width="320" height="180" src="http://www.youtube.com/embed/9l3DDSXkEQ0" frameborder="0" allowfullscreen></iframe>
-		<div>
+<!-- <iframe width="320" height="180" src="http://www.youtube.com/embed/9l3DDSXkEQ0" frameborder="0" allowfullscreen></iframe>
+ -->		<div>
 			@foreach($Action as $a)
 					<img src="{{$a->poster}}" width="100px" height="100px" alt="{{$a->title}}"/>	
 			@endforeach			
