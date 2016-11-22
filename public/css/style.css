@@ -25,6 +25,7 @@ main {
 .input-field {
 	color: #EEEEEE;
 }
+
 .portal-page {
 	opacity: 0.8;
 	background-color: #212121;
@@ -40,14 +41,20 @@ main {
 		width: 100%
 	}
 }
+
 .submit-btn {
 	text-align: center;
 	background-color: #EEEEEE;
 	color: #212121;
 }
 
-/* Content Page */
-.content-page {
+/* Carousel Title */
+.carousel-title {
+	color: #EEEEEE;
+}
+
+.movies-grid {
+	text-align: center; 
 }
 /* Footer */
 .page-footer {
