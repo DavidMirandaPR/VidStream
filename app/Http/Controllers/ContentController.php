@@ -32,7 +32,7 @@ class ContentController extends Controller
      */
     public function create()
     {
-        //
+       return view('content-data.content', $data);
     }
 
     /**

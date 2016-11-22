@@ -19,6 +19,10 @@ Route::get('/', function () {
 //===============================================
 //	Note: Add Constraints to resource controllers
 //===============================================
+
+
+
+
 //RESTful Controller @ VidStream.tv/content
 Route::resource('content','ContentController');
 

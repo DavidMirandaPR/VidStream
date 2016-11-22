@@ -56,11 +56,12 @@ class LoginController extends Controller
               }
               else if($user->level == 2)
               {
-                echo "Level 2";
+                echo "Premium Account";
               }
               else if($user->level == 3)
               {
-                echo "Level 3";
+                $data['users'] = User::get();
+                return view('user-portal.admin', $data);
               }
             }
             else
