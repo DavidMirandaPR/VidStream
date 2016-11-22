@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+	
 	$("body").vegas({
 		slides: [
 			{ src: "/img/avengers_age_of_ultron.jpg"},

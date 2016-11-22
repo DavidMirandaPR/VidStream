@@ -2,12 +2,15 @@ html, body {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: #212121;
 }
 
 main {
 	height: 100%;
 	position: relative;
+}
+
+.body-color {
+	background-color: #212121;
 }
 /* Navigation bar*/
 .nav-wrapper {
@@ -54,7 +57,7 @@ main {
 }
 
 .movies-grid {
-	text-align: center; 
+	text-align: center;
 }
 /* Footer */
 .page-footer {

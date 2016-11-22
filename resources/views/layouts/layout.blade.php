@@ -22,7 +22,7 @@
     <script src="js/index.js"></script>
     <title> @yield('title')</title>
   </head>
-  <body>
+  <body class="body-color">
 
 		<!-- Navigation Bar -->
 		<header class="z-depth-3">
