@@ -48,11 +48,23 @@ class LoginController extends Controller
         if($user = User::where("email", "=", $email)->get()->first())
         {
             if($user->password == $password)
-            {                
-                //return redirect('content');
-                return redirect()->route('content.index', ['user' => $user]);
-            }            
-            else{
+            {
+              if($user->level == 1)
+              {
+                //echo "Level 1";
+                return redirect()->route('content.index');
+              }
+              else if($user->level == 2)
+              {
+                echo "Level 2";
+              }
+              else if($user->level == 3)
+              {
+                echo "Level 3";
+              }
+            }
+            else
+            {
                 return view('/login');
             }
         }
