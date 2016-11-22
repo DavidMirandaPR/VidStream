@@ -40,7 +40,8 @@ class RegistrationController extends Controller
       $lastName  = $request->input('lastName');
       $email     = $request->input('email');
       $password  = $request->input('password');
-      $level = 1;
+      $level     = $request->input('level');
+
       //==============================================
       //Creating a User instance with table attributes
       //==============================================
@@ -49,9 +50,11 @@ class RegistrationController extends Controller
       $user->lastName  = $lastName;
       $user->email     = $email;
       $user->password  = $password;
-      $user->level     = 1;
+      $user->level     = $level;
       //Saving User isntance to DB
       $user->save();
+      return view('user-portal.login');
+
     }
     /**
      * Display the specified resource.

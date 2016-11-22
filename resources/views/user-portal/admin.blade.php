@@ -18,7 +18,7 @@
 	    <th style='color: #ffffff';>Payment ID</th>
 	</tr>
 		<!--/////////////////////////////////////////////////////////////////////////
-				GENERATING THE ROWS OF THE RANDOM PARTICIPANTS ON THE CHALLENGES
+				USERS TABLE
 			/////////////////////////////////////////////////////////////////////////-->
 		@foreach ($users as $u)
 		<tr style="background-color: white" align="center">

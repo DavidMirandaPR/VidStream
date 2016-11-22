@@ -3,7 +3,7 @@
 @section('content')
 
 <main>
-	<h4 class="carousel-title">My History</h4>
+<!-- 	<h4 class="carousel-title">My History</h4>
 	<div class="movies-grid">
 			<span class="col s6">
 				<img src="http://placehold.it/200x150" alt="Placeholder"/>
@@ -44,7 +44,7 @@
 			<span class="col s6">
 				<img src="http://placehold.it/200x150" alt="Placeholder"/>
 			</span>
-	</div>
+	</div> -->
 	<h4 class="carousel-title">Action</h4>
 	<div class="movies-grid">
 		@foreach($Action as $a)
