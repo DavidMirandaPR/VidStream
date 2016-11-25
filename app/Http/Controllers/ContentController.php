@@ -14,15 +14,21 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $genres = ['Action','Comedy','Horror'];
+        $data['genres'] = ['Action','Comedy','Horror'];
 
-        for ($i=0; $i < count($genres); $i++) {
 
-            $data[$genres[$i]] = Content::where('genre', 'LIKE', '%'.$genres[$i].'%')
-                            ->orderBy('year', 'desc')
-                            ->limit(10)->get();
-        }
-        return view('content-data.content', $data);
+				for($i = 0; $i < count($data['genres']); $i++){
+						$data[$data['genres'][$i]] = Content::where('genre', 'LIKE', '%' . $data['genres'][$i] . '%')
+		                        						->orderBy('year', 'desc')
+		                           					->limit(10)->get();
+				}
+        // for ($i=0; $i < count($genres); $i++) {
+				//
+        //     $data[$genres[$i]] = Content::where('genre', 'LIKE', '%'.$genres[$i].'%')
+        //                     ->orderBy('year', 'desc')
+        //                     ->limit(10)->get();
+        // }
+        return view('content-data.content', ['data' => $data]);
     }
 
     /**
