@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User; //user Model
+use App\Account; //Account Model
 
 use App\Content;
 
@@ -45,7 +45,7 @@ class LoginController extends Controller
         $email    = $request->input('email');
         $password = $request->input('password');
 
-        if($user = User::where("email", "=", $email)->get()->first())
+        if($user = Account::where("email", "=", $email)->get()->first())
         {
             if($user->password == $password)
             {
@@ -60,7 +60,7 @@ class LoginController extends Controller
               }
               else if($user->level == 3)
               {
-                $data['users'] = User::get();
+                $data['users'] = Account::get();
                 return view('user-portal.admin', $data);
               }
             }

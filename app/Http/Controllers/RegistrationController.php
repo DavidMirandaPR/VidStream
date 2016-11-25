@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\User; //User Model
+use App\Account; //Account Model
 class RegistrationController extends Controller
 {
     /**
@@ -45,7 +45,7 @@ class RegistrationController extends Controller
       //==============================================
       //Creating a User instance with table attributes
       //==============================================
-      $user = new User();
+      $user = new Account();
       $user->firstName = $firstName;
       $user->lastName  = $lastName;
       $user->email     = $email;
