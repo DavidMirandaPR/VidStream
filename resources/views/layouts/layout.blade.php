@@ -35,7 +35,7 @@
 						<i class="material-icons">menu</i>
 					</a>
 					<!-- Nav bar Links non collapsed-->
-					@if(Request::is('content'))
+					@if(Session::has('session_account'))
 					@else
 		        <ul id="nav-mobile" class="right hide-on-med-and-down">
 		          <li class="{{ Request::is('content') ? 'active' : '' }}">
