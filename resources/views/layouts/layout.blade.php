@@ -35,17 +35,20 @@
 						<i class="material-icons">menu</i>
 					</a>
 					<!-- Nav bar Links non collapsed-->
-	        <ul id="nav-mobile" class="right hide-on-med-and-down">
-	          <li class="{{ Request::is('content') ? 'active' : '' }}">
-							<a href="{{ url('/content') }}">Content</a>
-						</li>
-	          <li class="{{ Request::is('login') ? 'active' : '' }}">
-							<a href="{{ url('/login') }}">Login</a>
-						</li>
-	          <li class="{{ Request::is('register') ? 'active' : '' }}">
-							<a href="{{ url('/register') }}">Registration</a>
-	          </li>
-	        </ul>
+					@if(Request::is('content'))
+					@else
+		        <ul id="nav-mobile" class="right hide-on-med-and-down">
+		          <li class="{{ Request::is('content') ? 'active' : '' }}">
+								<a href="{{ url('/content') }}">Content</a>
+							</li>
+		          <li class="{{ Request::is('login') ? 'active' : '' }}">
+								<a href="{{ url('/login') }}">Login</a>
+							</li>
+		          <li class="{{ Request::is('register') ? 'active' : '' }}">
+								<a href="{{ url('/register') }}">Registration</a>
+		          </li>
+		        </ul>
+					@endif
 					<!-- Collapesed Menu Links -->
 					<ul class="side-nav" id="mobile-collapse">
 						<li><a href="/content">Content</a></li>

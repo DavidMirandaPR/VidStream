@@ -30,6 +30,10 @@
 								<label for="email">Email</label>
 							</div>
 							<div class="input-field col s12">
+								<input type="text" name="username" value="">
+								<label for="username">Username</label>
+							</div>
+							<div class="input-field col s12">
 								<input type="password" name="password" value="">
 								<label for="password">Password</label>
 							</div>
