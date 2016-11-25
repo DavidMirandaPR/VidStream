@@ -35,7 +35,13 @@
 						<i class="material-icons">menu</i>
 					</a>
 					<!-- Nav bar Links non collapsed-->
-					@if(Request::is('content'))
+					@if(Session::has('session_account'))
+					<ul id="nav-mobile" class="right hide-on-med-and-down">
+			          <li class="{{ Request::is('content') ? 'active' : '' }}">
+									<a href="{{ url('/logout') }}">Logout</a>
+								</li>
+			          </li>
+		        	</ul>
 					@else
 		        <ul id="nav-mobile" class="right hide-on-med-and-down">
 		          <li class="{{ Request::is('content') ? 'active' : '' }}">

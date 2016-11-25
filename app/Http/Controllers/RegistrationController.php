@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\User; //User Model
+use App\Account;  //Account Model
+use App\Username; //Username Model
+
 class RegistrationController extends Controller
 {
     /**
@@ -9,8 +11,13 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+      //dd($request);
+      if ($request->session()->has('session_account')) {
+        return redirect('/content');
+      }
+      else
         return view('user-portal.registration');
     }
     /**
@@ -41,20 +48,33 @@ class RegistrationController extends Controller
       $email     = $request->input('email');
       $password  = $request->input('password');
       $level     = $request->input('level');
+      $username  = $request->input('username');
 
       //==============================================
-      //Creating a User instance with table attributes
+      //          Creating a User instance
       //==============================================
-      $user = new User();
-      $user->firstName = $firstName;
-      $user->lastName  = $lastName;
-      $user->email     = $email;
-      $user->password  = $password;
-      $user->level     = $level;
-      //Saving User isntance to DB
-      $user->save();
-      return view('user-portal.login');
+      $account            = new Account();
+      $account->firstName = $firstName;
+      $account->lastName  = $lastName;
+      $account->email     = $email;
+      $account->password  = $password;
+      $account->level     = $level;
+      //Saving User instance to DB
+      //return view('user-portal.login');
+      $account->save();
 
+
+      //==============================================
+      //          Creating a Username instance
+      //==============================================
+      $userName             = new Username;
+      $userName->account_id = $account->id;
+      $userName->username   = $username;
+      $userName->save();
+
+      $acc = Account::where('id', '=', $account->id)
+                      ->whereNull('username_id')
+                      ->update(['username_id' => $userName->id]);
     }
     /**
      * Display the specified resource.

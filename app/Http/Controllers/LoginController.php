@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User; //user Model
+use App\Account; //Account Model
 
 use App\Content;
 
@@ -15,9 +15,13 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('user-portal.login');
+        if ($request->session()->has('session_account')) {
+            return redirect('/content');
+        }
+        else
+            return view('user-portal.login');
     }
 
     /**
@@ -45,14 +49,15 @@ class LoginController extends Controller
         $email    = $request->input('email');
         $password = $request->input('password');
 
-        if($user = User::where("email", "=", $email)->get()->first())
+        if($user = Account::where("email", "=", $email)->get()->first())
         {
             if($user->password == $password)
             {
+              SessionController::putSession($request);
               if($user->level == 1)
               {
                 //echo "Level 1";
-                return redirect()->route('content.index');
+                return redirect('/content');
               }
               else if($user->level == 2)
               {
@@ -60,17 +65,20 @@ class LoginController extends Controller
               }
               else if($user->level == 3)
               {
-                $data['users'] = User::get();
+                $data['users'] = Account::get();
                 return view('user-portal.admin', $data);
               }
             }
             else
             {
-                return view('/login');
+                echo "Nope 1";
+                //return redirect('/login');
             }
         }
-        else
-            return view('/login');
+        else{
+            echo "Nope 2";
+            return redirect('/login');
+        }
     }
 
     /**

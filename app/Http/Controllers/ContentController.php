@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Content;
+
 class ContentController extends Controller
 {
     /**
@@ -16,18 +17,12 @@ class ContentController extends Controller
     {
         $data['genres'] = ['Action','Comedy','Horror'];
 
+			for($i = 0; $i < count($data['genres']); $i++){
+				$data[$data['genres'][$i]] = Content::where('genre', 'LIKE', '%' . $data['genres'][$i] . '%')
+                        					->orderBy('year', 'desc')
+                           					->limit(10)->get();
+			}
 
-				for($i = 0; $i < count($data['genres']); $i++){
-						$data[$data['genres'][$i]] = Content::where('genre', 'LIKE', '%' . $data['genres'][$i] . '%')
-		                        						->orderBy('year', 'desc')
-		                           					->limit(10)->get();
-				}
-        // for ($i=0; $i < count($genres); $i++) {
-				//
-        //     $data[$genres[$i]] = Content::where('genre', 'LIKE', '%'.$genres[$i].'%')
-        //                     ->orderBy('year', 'desc')
-        //                     ->limit(10)->get();
-        // }
         return view('content-data.content', ['data' => $data]);
     }
 

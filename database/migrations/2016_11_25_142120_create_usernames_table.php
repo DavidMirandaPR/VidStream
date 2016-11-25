@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGenresTable extends Migration
+class CreateUsernamesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateGenresTable extends Migration
      */
     public function up()
     {
-        Schema::create('genres', function (Blueprint $table) {
-            $table->integer('id');
-            $table->string('type');
+        Schema::create('usernames', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('account_id');
+            $table->string('username')->unique();
             $table->timestamps();
-
-            //Adding Primary Key to the Table 'content'
-            $table->primary('id');
-        });    
+        });
     }
 
     /**
@@ -30,7 +28,7 @@ class CreateGenresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genres');
-   
+        Schema::dropIfExists('usernames');
+
     }
 }
