@@ -20,7 +20,7 @@ class ContentController extends Controller
 
             $data[$genres[$i]] = Content::where('genre', 'LIKE', '%'.$genres[$i].'%')
                             ->orderBy('year', 'desc')
-                            ->limit(10)->get();
+                            ->limit(20)->get();
         }
         return view('content-data.content', $data);
     }
