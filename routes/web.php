@@ -33,7 +33,7 @@ Route::resource('register','RegistrationController');
 
 //RESTful Controller @ VidStream.tv/login
 Route::resource('login','LoginController');
-
+Route::get('/logout','SessionController@forgetSession');
 //Default Home Controller
 Route::get('/home', 'HomeController@index');
 
