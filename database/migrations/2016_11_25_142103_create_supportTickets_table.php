@@ -13,8 +13,13 @@ class CreateSupportTicketsTable extends Migration
      */
     public function up()
     {
-        //
-    }
+        Schema::create('supportTicket', function (Blueprint $table) {
+            $table->increments('id');       //Ticket Number
+            $table->integer('username_id'); //User who issued the ticket
+            $table->string('message');
+            $table->boolean('handled');
+            $table->timestamps();
+        });    }
 
     /**
      * Reverse the migrations.
@@ -23,6 +28,6 @@ class CreateSupportTicketsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('supportTicket');
     }
 }

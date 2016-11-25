@@ -15,9 +15,13 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('user-portal.login');
+        if ($request->session()->has('session_account')) {
+            return redirect('/content');
+        }
+        else
+            return view('user-portal.login');
     }
 
     /**
@@ -49,10 +53,11 @@ class LoginController extends Controller
         {
             if($user->password == $password)
             {
+              SessionController::putSession($request);
               if($user->level == 1)
               {
                 //echo "Level 1";
-                return redirect()->route('content.index');
+                return redirect('/content');
               }
               else if($user->level == 2)
               {
@@ -66,11 +71,14 @@ class LoginController extends Controller
             }
             else
             {
-                return view('/login');
+                echo "Nope 1";
+                //return redirect('/login');
             }
         }
-        else
-            return view('/login');
+        else{
+            echo "Nope 2";
+            return redirect('/login');
+        }
     }
 
     /**

@@ -15,7 +15,8 @@ class CreateUsernamesTable extends Migration
     {
         Schema::create('usernames', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username')->nullable();
+            $table->integer('account_id');
+            $table->string('username')->unique();
             $table->timestamps();
         });
     }

@@ -20,7 +20,9 @@ Route::get('/', function () {
 //	Note: Add Constraints to resource controllers
 //===============================================
 
-
+Route::get('session/get', 'SessionController@getSession');
+Route::post('session/put', 'SessionController@putSession');
+Route::get('session/forget', 'SessionController@forgetSession');
 
 
 //RESTful Controller @ VidStream.tv/content

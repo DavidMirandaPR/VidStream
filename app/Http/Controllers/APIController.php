@@ -45,9 +45,9 @@ class APIController extends Controller
         {   
             if($c['title'] == null)
             {
-                $url = "http://www.omdbapi.com/?i=".$c->imdbID;
-                $json = file_get_contents($url);
-                $obj = json_decode($json, true);
+                $url    = "http://www.omdbapi.com/?i=".$c->imdbID;
+                $json   = file_get_contents($url);
+                $obj    = json_decode($json, true);
     
                 if($obj['Type'] == 'movie' && $c['Type'] == null)
                 {
@@ -100,6 +100,7 @@ class APIController extends Controller
             for ($i=0; $i < 16; $i++) 
             {
                 echo "Updating the ".$DBatt[$i]." of the instance <br>";
+
                 $c = Content::where('imdbID', '=', $obj['imdbID'])
                         ->whereNull($DBatt[$i])
                         ->update([$DBatt[$i] => $obj[$att[$i]]]);

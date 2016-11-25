@@ -14,12 +14,12 @@ class CreateGenresTable extends Migration
     public function up()
     {
         Schema::create('genres', function (Blueprint $table) {
-            $table->integer('genre_id');
+            $table->integer('id');
             $table->string('type');
             $table->timestamps();
 
             //Adding Primary Key to the Table 'content'
-            $table->primary('genre_id');
+            $table->primary('id');
         });    
     }
 
