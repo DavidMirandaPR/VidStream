@@ -13,17 +13,21 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['genres'] = ['Action','Comedy','Horror'];
+        if($request->session()->exists('session_account')){
+            $data['genres'] = ['Action','Comedy','Horror'];
 
-			for($i = 0; $i < count($data['genres']); $i++){
-				$data[$data['genres'][$i]] = Content::where('genre', 'LIKE', '%' . $data['genres'][$i] . '%')
-                        					->orderBy('year', 'desc')
-                           					->limit(10)->get();
-			}
+    			for($i = 0; $i < count($data['genres']); $i++){
+    				$data[$data['genres'][$i]] = Content::where('genre', 'LIKE', '%' . $data['genres'][$i] . '%')
+                            					->orderBy('year', 'desc')
+                               					->limit(10)->get();
+    			}
 
-        return view('content-data.content', ['data' => $data]);
+            return view('content-data.content', ['data' => $data]);
+        }
+        else
+            return view('user-portal.login');
     }
 
     /**

@@ -56,7 +56,6 @@ class LoginController extends Controller
               SessionController::putSession($request);
               if($user->level == 1)
               {
-                //echo "Level 1";
                 return redirect('/content');
               }
               else if($user->level == 2)
@@ -69,14 +68,14 @@ class LoginController extends Controller
                 return redirect('/account');
               }
             }
-            else
+            else if($user->level == 4)
             {
-                echo "Nope 1";
-                //return redirect('/login');
+                $data['users'] = Account::get();
+                return redirect('/account');
             }
         }
-        else{
-            echo "Nope 2";
+        else
+        {
             return redirect('/login');
         }
     }
