@@ -64,3 +64,17 @@ main {
 	background-color: #FF424F;
 }
 
+/*Admin View*/
+table#users{
+	background-color: white;
+	border:1px solid #000;
+
+}
+td{
+    border:1px solid #000;
+}
+
+tr td:last-child{
+    width:1%;
+    white-space:nowrap;
+}

@@ -6,9 +6,9 @@
 @section('content')
 
 <div>
-	<table class="usr_table">
+	<table id="users">
 
-	<tr class="table_heading">
+	<tr id="usr_T">
 	    <th>User ID</th>
 	    <th>Firstname</th>
 	    <th>Lastname</th>
@@ -17,11 +17,11 @@
 	    <th>level</th>
 	    <th>Payment ID</th>
 	</tr>
-		<!--/////////////////////////////////////////////////////////////////////////
+		<!--////////////////////////////////////////////////////////////////////////
 				USERS table 	I CAN MANAGE THE WHOLE ACCOUNTS TABLE
-			/////////////////////////////////////////////////////////////////////////-->
+		/////////////////////////////////////////////////////////////////////////-->
 	@foreach ($users as $u)
-	<tr class="users_rows">
+	<tr id="users_rows">
 		<td>{{$u->id}}</td>
 		<td>{{$u->firstName}}</td>
 		<td>{{$u->lastName}}</td>
