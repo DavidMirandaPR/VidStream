@@ -9,10 +9,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use App\Account;
 //Route for register testing
 Route::get('/', function () {
-    return view('user-portal.login');
+	if(Session::has('session_account'))
+	{
+		return redirect()->action('ContentController@index');
+	}
+	else
+	{
+    	return view('user-portal.login');
+	}
 });
 
 
@@ -20,11 +27,10 @@ Route::get('/', function () {
 //	Note: Add Constraints to resource controllers
 //===============================================
 
-Route::get('session/get', 'SessionController@getSession');
-Route::post('session/put', 'SessionController@putSession');
-Route::get('session/forget', 'SessionController@forgetSession');
-
-
+Route::get('/account', function(){
+	$data['users'] = Account::get();
+    return view('user-portal.admin', $data);
+});
 //RESTful Controller @ VidStream.tv/content
 Route::resource('content','ContentController');
 
@@ -33,6 +39,7 @@ Route::resource('register','RegistrationController');
 
 //RESTful Controller @ VidStream.tv/login
 Route::resource('login','LoginController');
+//Logout Link
 Route::get('/logout','SessionController@forgetSession');
 //Default Home Controller
 Route::get('/home', 'HomeController@index');

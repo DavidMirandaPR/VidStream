@@ -15,7 +15,7 @@ class CreateActorsTable extends Migration
     {
         Schema::create('actors', function (Blueprint $table) {
             $table->integer('actor_id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->timestamps();
 
             //Adding Primary Key to the Table 'content'
