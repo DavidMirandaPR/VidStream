@@ -16,9 +16,9 @@ class CreateSupportTicketsTable extends Migration
         Schema::create('supportTicket', function (Blueprint $table) {
             $table->increments('id');       //Ticket Number
             $table->integer('username_id'); //User who issued the ticket
-            $table->integer('staff_id');
+            $table->integer('staff_id')->nullable();
             $table->string('message');
-            $table->boolean('handled');
+            $table->boolean('handled')->default(false);
             $table->timestamps();
         });    }
 
