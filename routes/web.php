@@ -10,6 +10,7 @@
 |
 */
 use App\Account;
+
 //Route for register testing
 Route::get('/', function () {
 	if(Session::has('session_account'))
