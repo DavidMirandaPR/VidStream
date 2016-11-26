@@ -42,7 +42,6 @@
 									<option value="" disabled selected>Choose Level</option>
 									<option value="1">Free</option>
 									<option value="2">Subscription</option>
-									<option value="3">Staff</option>
 								</select>
 								<label>User Level</label>
 							</div>

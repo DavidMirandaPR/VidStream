@@ -3,7 +3,7 @@
 
 @section('dropdown-structure')
 	<ul id="dropdown" class="dropdown-content">
-		<li><a href="#">Profile</a></li>
+		<li><a href="{{ url('profile') }}">Profile</a></li>
 		<li class="divider"></li>
 		<li><a href="#">Switch User</a></li>
 		<li class="divider"></li>

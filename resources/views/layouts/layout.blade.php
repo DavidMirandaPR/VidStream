@@ -24,6 +24,9 @@
   </head>
   <body class="body-color">
 
+		<!-- Page specific scripts -->
+		@section("script")
+		@show
 		<!-- Dropdown Structure -->
 		@section('dropdown-structure')
 		@show
@@ -38,7 +41,7 @@
 						<i class="material-icons">menu</i>
 					</a>
 					<!-- Nav bar Links non collapsed-->
-					@if(Request::is('content'))
+					@if(Request::is('content') || Request::is('profile'))
 						@section('usertab')
 						@show
 					@else
@@ -53,13 +56,13 @@
 								<a href="{{ url('/register') }}">Registration</a>
 		          </li>
 		        </ul>
+						<!-- Collapesed Menu Links -->
+						<ul class="side-nav" id="mobile-collapse">
+							<li><a href="/content">Content</a></li>
+							<li><a href="/login">Login</a></li>
+							<li><a href="/register">Register</a></li>
+						</ul>
 					@endif
-					<!-- Collapesed Menu Links -->
-					<ul class="side-nav" id="mobile-collapse">
-						<li><a href="/content">Content</a></li>
-						<li><a href="/login">Login</a></li>
-						<li><a href="/register">Register</a></li>
-					</ul>
 	      </div>
 
 	    </nav>
