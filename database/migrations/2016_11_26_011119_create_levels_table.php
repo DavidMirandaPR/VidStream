@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActorsTable extends Migration
+class CreateLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateActorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('actors', function (Blueprint $table) {
-            $table->integer('actor_id');
-            $table->string('name')->unique();
+        Schema::create('levels', function (Blueprint $table) {
+            $table->integer('id');
+            $table->string('type')->unique();
             $table->timestamps();
 
             //Adding Primary Key to the Table 'content'
-            $table->primary('actor_id');
+            $table->primary('id');
         });    
     }
 
@@ -30,7 +30,7 @@ class CreateActorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actors');
-
+        Schema::dropIfExists('levels');
+   
     }
 }

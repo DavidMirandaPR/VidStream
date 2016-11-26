@@ -66,7 +66,7 @@ class LoginController extends Controller
               else if($user->level == 3)
               {
                 $data['users'] = Account::get();
-                return view('user-portal.admin', $data);
+                return redirect('/account');
               }
             }
             else

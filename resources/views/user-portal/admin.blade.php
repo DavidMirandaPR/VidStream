@@ -6,31 +6,31 @@
 @section('content')
 
 <div>
-	<table align="center" cellspacing="0" cellpadding="0" border="0" style="width:100%">
+	<table class="usr_table">
 
-	<tr style='background-color: #FF424F';>
-	    <th style='color: #ffffff';>User ID</th>
-	    <th style='color: #ffffff';>Firstname</th>
-	    <th style='color: #ffffff';>Lastname</th>
-	    <th style='color: #ffffff';>email</th>
-	    <th style='color: #ffffff';>password</th>
-	    <th style='color: #ffffff';>level</th>
-	    <th style='color: #ffffff';>Payment ID</th>
+	<tr class="table_heading">
+	    <th>User ID</th>
+	    <th>Firstname</th>
+	    <th>Lastname</th>
+	    <th>email</th>
+	    <th>password</th>
+	    <th>level</th>
+	    <th>Payment ID</th>
 	</tr>
 		<!--/////////////////////////////////////////////////////////////////////////
-				USERS TABLE
+				USERS table 	I CAN MANAGE THE WHOLE ACCOUNTS TABLE
 			/////////////////////////////////////////////////////////////////////////-->
-		@foreach ($users as $u)
-		<tr style="background-color: white" align="center">
-			<td style="border-bottom: 10px">{{$u->id}}</td>
-			<td>{{$u->firstName}}</td>
-			<td>{{$u->lastName}}</td>
-			<td>{{$u->email}}</td>
-			<td>{{$u->password}}</td>
-			<td>{{$u->level}}</td>
-			<td>{{$u->Payment_ID}}</td>		
-		</tr>
-		@endforeach
+	@foreach ($users as $u)
+	<tr class="users_rows">
+		<td>{{$u->id}}</td>
+		<td>{{$u->firstName}}</td>
+		<td>{{$u->lastName}}</td>
+		<td>{{$u->email}}</td>
+		<td>{{$u->password}}</td>
+		<td>{{$u->level}}</td>
+		<td>{{$u->Payment_ID}}</td>		
+	</tr>
+	@endforeach
 	</table>
 </div>
 

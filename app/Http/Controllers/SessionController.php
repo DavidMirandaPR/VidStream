@@ -26,8 +26,8 @@ class SessionController extends Controller
     	$request->session()->regenerate();
     	$request->session()->put('session_account', $account->email);
     	$request->session()->put('session_username', $UN->username);
-  		//$data    = $request->session()->all();
-     
+  		$data    = $request->session()->all();
+      //dd($data);
     }
     // create new function to delete session
     public function forgetSession(Request $request){

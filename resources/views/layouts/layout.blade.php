@@ -37,10 +37,12 @@
 					<!-- Nav bar Links non collapsed-->
 					@if(Session::has('session_account'))
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
-			          <li class="{{ Request::is('content') ? 'active' : '' }}">
-									<a href="{{ url('/logout') }}">Logout</a>
-								</li>
-			          </li>
+			          	<li class="{{ Request::is('content') ? 'active' : '' }}">
+							<a href="{{ url('#') }}">{{Session::get('session_username')}}'s Account</a>
+						</li>
+						<li class="{{ Request::is('content') ? 'active' : '' }}">
+							<a href="{{ url('/logout') }}">Logout</a>
+						</li>
 		        	</ul>
 					@else
 		        <ul id="nav-mobile" class="right hide-on-med-and-down">
