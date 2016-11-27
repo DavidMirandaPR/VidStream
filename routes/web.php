@@ -23,7 +23,7 @@ Route::get('/', function () {
 	}
 });
 
-
+Route::post('/edit', 'ProfileController@editProfile');
 Route::get('/logout','SessionController@forgetSession');
 
 //===============================================

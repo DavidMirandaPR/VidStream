@@ -26,7 +26,7 @@ class SessionController extends Controller
     	$request->session()->regenerate();
     	$request->session()->put('session_account', $account->email);
     	$request->session()->put('session_username', $UN->username);
-      $request->session()->put('session_level', $UN->level);
+      $request->session()->put('session_level', $account->level);
   		$data    = $request->session()->all();
       //dd($data);
     }
@@ -35,7 +35,8 @@ class SessionController extends Controller
       	$request->session()->forget('session_account');
       	$request->session()->forget('session_username');
       	//echo "data hasbeen removed from the session";
-        return view('user-portal.login');
+        return redirect('/login');
+
 
     }
 }
