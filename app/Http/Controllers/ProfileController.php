@@ -20,7 +20,16 @@ class ProfileController extends Controller
             $updateEmail = Account::where('email', '=', $account_email)->update(['email' => $newEmail]);
             $request->session()->put('session_account', $newEmail);
        }
-        else
-            echo "No email";
+       if($newPassword){
+            $updatePass = Account::where('password', '=', $newPassword)->update(['password' => $newPassword]);
+       }
+       if($newFirstName){
+            $updateFN = Account::where('firstName', '=', $newFirstName)->update(['firstName' => $newFirstName]);
+            $request->session()->put('session_firstName', $newFirstName);
+       }
+       if($newLastName){
+            $updateLN = Account::where('lastName', '=', $newLastName)->update(['lastname' => $lastName]);
+            $request->session()->put('session_lastName', $newLastName);
+       }
     }
 }
