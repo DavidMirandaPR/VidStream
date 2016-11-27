@@ -20,7 +20,6 @@
 @section('content')
 
 	<main>
-
 		@foreach($data['genres'] as $genre)
 			<h4 class="carousel-title">{{ $genre }}</h4>
 			<div class="movies-grid">

@@ -24,19 +24,35 @@ class SessionController extends Controller
     	$account = Account::where('email','=', $email)->get()->first();
     	$UN      = Username::where('account_id','=',$account->id)->get()->first();
     	$request->session()->regenerate();
-    	$request->session()->put('session_account', $account->email);
+			$request->session()->put('session_account', $account->id);
+    	$request->session()->put('session_email', $account->email);
+			$request->session()->put('session_firstName', $account->firstName);
+			$request->session()->put('session_lastName', $account->lastName);
+			$request->session()->put('session_level', $account->level);
     	$request->session()->put('session_username', $UN->username);
+<<<<<<< HEAD
       $request->session()->put('session_level', $account->level);
+=======
+
+>>>>>>> b7b493b8c27f7b0769f1977399e82be629bda7f2
   		$data    = $request->session()->all();
       //dd($data);
     }
     // create new function to delete session
     public function forgetSession(Request $request){
-      	$request->session()->forget('session_account');
-      	$request->session()->forget('session_username');
+				$request->session()->forget('session_account');
+      	$request->session()->forget('session_email');
+				$request->session()->forget('session_firstName');
+      	$request->session()->forget('session_lastName');
+				$request->session()->forget('session_level');
+				$request->session()->forget('session_username');
+
       	//echo "data hasbeen removed from the session";
         return redirect('/login');
+<<<<<<< HEAD
 
+=======
+>>>>>>> b7b493b8c27f7b0769f1977399e82be629bda7f2
 
     }
 }
