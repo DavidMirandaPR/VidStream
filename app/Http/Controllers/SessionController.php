@@ -12,7 +12,7 @@ class SessionController extends Controller
       	if($request->session()->has('session_account'))
       	{
         	echo $request->session()->get('session_account');
-        	
+
         }
       	else {
         	echo 'no data in the session';
@@ -33,7 +33,7 @@ class SessionController extends Controller
     public function forgetSession(Request $request){
       	$request->session()->forget('session_account');
       	$request->session()->forget('session_username');
-      	echo "data hasbeen removed from the session";
+      	//echo "data hasbeen removed from the session";
         return view('user-portal.login');
 
     }
