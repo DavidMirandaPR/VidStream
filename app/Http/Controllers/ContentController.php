@@ -16,7 +16,7 @@ class ContentController extends Controller
     public function index(Request $request)
     {
         if($request->session()->exists('session_account')){
-            $data['genres'] = ['Action','Comedy','Horror'];
+            $data['genres'] = ['Action','Comedy','Horror', 'War'];
 
     			for($i = 0; $i < count($data['genres']); $i++){
     				$data[$data['genres'][$i]] = Content::where('genre', 'LIKE', '%' . $data['genres'][$i] . '%')

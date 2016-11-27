@@ -38,11 +38,10 @@
 								<label for="password">Password</label>
 							</div>
 							<div class="input-field col s12">
-								<select multiple name="level">
+								<select name="level">
 									<option value="" disabled selected>Choose Level</option>
 									<option value="1">Free</option>
 									<option value="2">Subscription</option>
-									<option value="3">Staff</option>
 								</select>
 								<label>User Level</label>
 							</div>

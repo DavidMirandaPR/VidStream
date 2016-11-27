@@ -24,6 +24,12 @@
   </head>
   <body class="body-color">
 
+		<!-- Page specific scripts -->
+		@section("script")
+		@show
+		<!-- Dropdown Structure -->
+		@section('dropdown-structure')
+		@show
 		<!-- Navigation Bar -->
 		<header class="z-depth-3">
 	    <nav>
@@ -35,18 +41,12 @@
 						<i class="material-icons">menu</i>
 					</a>
 					<!-- Nav bar Links non collapsed-->
-					@if(Session::has('session_account'))
-					<ul id="nav-mobile" class="right hide-on-med-and-down">
-			          	<li class="{{ Request::is('content') ? 'active' : '' }}">
-							<a href="{{ url('#') }}">{{Session::get('session_username')}}'s Account</a>
-						</li>
-						<li class="{{ Request::is('content') ? 'active' : '' }}">
-							<a href="{{ url('/logout') }}">Logout</a>
-						</li>
-		        	</ul>
+					@if(Request::is('content') || Request::is('profile'))
+						@section('usertab')
+						@show
 					@else
 		        <ul id="nav-mobile" class="right hide-on-med-and-down">
-		          <li class="{{ Request::is('content') ? 'active' : '' }}">
+		          <li>
 								<a href="{{ url('/content') }}">Content</a>
 							</li>
 		          <li class="{{ Request::is('login') ? 'active' : '' }}">
@@ -56,13 +56,13 @@
 								<a href="{{ url('/register') }}">Registration</a>
 		          </li>
 		        </ul>
+						<!-- Collapesed Menu Links -->
+						<ul class="side-nav" id="mobile-collapse">
+							<li><a href="/content">Content</a></li>
+							<li><a href="/login">Login</a></li>
+							<li><a href="/register">Register</a></li>
+						</ul>
 					@endif
-					<!-- Collapesed Menu Links -->
-					<ul class="side-nav" id="mobile-collapse">
-						<li><a href="/content">Content</a></li>
-						<li><a href="/login">Login</a></li>
-						<li><a href="/register">Register</a></li>
-					</ul>
 	      </div>
 
 	    </nav>

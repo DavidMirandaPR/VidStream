@@ -47,10 +47,15 @@ Route::get('/home', 'HomeController@index');
 
 // Api Routes
 Route::group(['prefix' => 'api'], function () {
-	// Api: Version 1 	
+	// Api: Version 1
 	Route::group(['prefix' => 'v1'], function () {
 		//RESTful Controller @ Vidstream.tv/api/v1/getinfo
 		Route::resource('getinfo','APIController');
 	});
 });
 
+
+//Profile testing routes
+Route::get('profile', function(){
+		return view('user-portal.profile');
+});
