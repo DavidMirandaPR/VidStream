@@ -22,7 +22,9 @@ Route::get('/', function () {
     	return view('user-portal.login');
 	}
 });
-Route::get('/session/forget','SessionController@forgetSession');
+
+
+Route::get('/logout','SessionController@forgetSession');
 
 //===============================================
 //	Note: Add Constraints to resource controllers

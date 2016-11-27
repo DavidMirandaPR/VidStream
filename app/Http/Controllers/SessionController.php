@@ -12,7 +12,7 @@ class SessionController extends Controller
       	if($request->session()->has('session_account'))
       	{
         	echo $request->session()->get('session_account');
-        	
+
         }
       	else {
         	echo 'no data in the session';
