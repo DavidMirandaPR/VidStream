@@ -34,7 +34,7 @@
 		</div>
 		<!-- Account Tab -->
 		<div id="account" class="col s12">
-<<<<<<< HEAD
+			<h4>{{ Session::get('session_username') }}</h4>
 			<div class="container">
 				<div class="row">
 					<form class="col s12" action="/edit" method="POST">
@@ -52,30 +52,6 @@
 									<label for="email">Email</label>
 								</div>
 								<div class="input-field col s12">
-									<input type="text" name="username" value="">
-									<label for="username">Username</label>
-								</div>
-								<div class="input-field col s12">
-=======
-			<h4>{{ Session::get('session_username') }}</h4>
-			<div class="container">
-				<div class="row">
-					<form class="col s12" action="/register" method="POST">
-							<div class="row">
-								<div class="input-field col s6">
-									<input type="text" name="firstName" value="{{ Session::get('session_firstName') }}">
-									<label for="firstName">First Name</label>
-								</div>
-								<div class="input-field col s6">
-									<input type="text" name="lastName" value="{{ Session::get('session_lastName') }}">
-									<label for="lastName">Last Name</label>
-								</div>
-								<div class="input-field col s12">
-									<input type="email" name="email" value="{{ Session::get('session_email') }}">
-									<label for="email">Email</label>
-								</div>
-								<div class="input-field col s12">
->>>>>>> b7b493b8c27f7b0769f1977399e82be629bda7f2
 									<input type="password" name="password" value="">
 									<label for="password">Password</label>
 								</div>
@@ -92,13 +68,9 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 					</form>
 				</div>
-<<<<<<< HEAD
-			</div>		</div>
-=======
 			</div>
 		</div>
 		<!-- Username Tab -->
->>>>>>> b7b493b8c27f7b0769f1977399e82be629bda7f2
 		<div id="username" class="col s12">
 			<!-- Add User Container -->
 			<div class="container">
@@ -116,7 +88,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Movies Tab -->
 		<div id="movies" class="col s12">
 			Movie Settings

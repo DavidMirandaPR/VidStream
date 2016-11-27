@@ -30,11 +30,8 @@ class SessionController extends Controller
 			$request->session()->put('session_lastName', $account->lastName);
 			$request->session()->put('session_level', $account->level);
     	$request->session()->put('session_username', $UN->username);
-<<<<<<< HEAD
       $request->session()->put('session_level', $account->level);
-=======
 
->>>>>>> b7b493b8c27f7b0769f1977399e82be629bda7f2
   		$data    = $request->session()->all();
       //dd($data);
     }
@@ -49,10 +46,6 @@ class SessionController extends Controller
 
       	//echo "data hasbeen removed from the session";
         return redirect('/login');
-<<<<<<< HEAD
-
-=======
->>>>>>> b7b493b8c27f7b0769f1977399e82be629bda7f2
 
     }
 }
