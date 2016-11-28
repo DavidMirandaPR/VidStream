@@ -32,4 +32,8 @@ class ProfileController extends Controller
             $request->session()->put('session_lastName', $newLastName);
        }
     }
+		public function randomName(Request $request)
+		{
+			return "I think this worked";
+		}
 }

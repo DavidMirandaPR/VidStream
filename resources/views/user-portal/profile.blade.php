@@ -1,5 +1,27 @@
 @extends('layouts.layout')
 @section('title', 'Profile')
+@section('header')
+<meta name="csrf-token" content="{!! Session::token() !!}">
+@endsection
+@section('script')
+	<script>
+		$(document).ready(function(){
+			$.post('/random', {
+				_token: $('meta[name=csrf-token]').attr('content'),
+				firstChip: 'JON NO HA HECHO NADA !!!!',
+				secondShip: ' World!'
+			}).done(function(msg){
+			});
+		});
+
+		$('.chips').material_chip();
+
+		$('.chips').on('chip.add', function(e, chip){
+			alert("e: " + e);
+			alert("chip: " + chip);
+		});
+	</script>
+@endsection
 
 @section('dropdown-structure')
 	<ul id="dropdown" class="dropdown-content">
@@ -72,8 +94,18 @@
 		</div>
 		<!-- Username Tab -->
 		<div id="username" class="col s12">
+			<h4>Usernames in account!</h4>
+			<p>Caution: Deleting a username will also delete it's data, this action is non-reversable!</p>
+			<div class="chip chip-initial" data-index="0" data-initialized="true">
+				<div class="chip">
+					Tag
+					<i class="close material-icons">close</i>
+				</div>
+				<input class="input" type="text" placeholder="">
+			</div>
+
 			<!-- Add User Container -->
-			<div class="container">
+			{{-- <div class="container">
 				<div class="row">
 					<form class="col s12" action="/login" method="POST">
 							<div class="row">
@@ -86,7 +118,7 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 					</form>
 				</div>
-			</div>
+			</div> --}}
 		</div>
 		<!-- Movies Tab -->
 		<div id="movies" class="col s12">

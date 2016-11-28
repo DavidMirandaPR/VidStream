@@ -24,6 +24,9 @@
   </head>
   <body class="body-color">
 
+		<!-- Page specific script -->
+		@section('script')
+		@show
 		<!-- Dropdown Structure -->
 		@section('dropdown-structure')
 		@show

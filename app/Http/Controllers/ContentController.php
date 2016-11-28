@@ -1,5 +1,5 @@
 <?php
-
+//composer dump-autoload
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;

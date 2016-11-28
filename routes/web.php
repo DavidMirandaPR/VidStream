@@ -22,7 +22,7 @@ Route::get('/', function () {
     	return view('user-portal.login');
 	}
 });
-
+Route::post('/random','ProfileController@randomName');
 Route::post('/edit', 'ProfileController@editProfile');
 Route::get('/logout','SessionController@forgetSession');
 
