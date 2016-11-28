@@ -32,10 +32,10 @@ class CreateUsernamesTable extends Migration
                   ->references('id')->on('accounts');
 
             $table->foreign('history_id')
-                  ->references('id')->on('usersHistory')->onDelete('cascade');
+                  ->references('id')->on('usersHistory');
 
             $table->foreign('genrePreference_id')
-                  ->references('id')->on('genresPreferences')->onDelete('cascade');
+                  ->references('id')->on('genresPreferences');
         });
     }
 

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\Account;
-use App\Username;
-use App\SupportTicket;
+use App\Account;          //Account Model
+use App\Username;         //Username Model
+use App\GenrePreferences; //GenrePreferences Model
+use App\UserHistory;      //userHistory Model
+use App\SupportTicket;    //SupportTicket Model
 
 class ProfileController extends Controller
 {
@@ -65,6 +67,21 @@ class ProfileController extends Controller
                 $UN->account_id = $accID;
                 $UN->save();
                 Session::flash('message', 'Username Added!!');
+                //==============================================
+                //      Creating a Genre Preferences Instance
+                //==============================================
+                $genrePref              = new GenrePreferences;
+                $genrePref->account_id  = $accID;
+                $genrePref->username_id = $UN->id;
+                $genrePref->save();
+                //==============================================
+                //      Creating a History Preferences Instance
+                //==============================================
+                $userHistory              = new UserHistory;
+                $userHistory->account_id  = $accID;
+                $userHistory->username_id = $UN->id;
+                $userHistory->save();
+
                 return redirect('/profile');
             }
             else{
@@ -147,7 +164,11 @@ class ProfileController extends Controller
         if($selUID)
         {
             Username::find($selUID)->delete();
-						return "Sucessfully Deleted User";
+            GenrePreferences::where('username_id','=',$selUID)->delete();
+            UserHistory::where('username_id','=',$selUID)->delete(); 
+            SupportTicket::where('username_id','=',$selUID)->delete(); 
+
+            return "Sucessfully Deleted User";
         }
     }
 }
