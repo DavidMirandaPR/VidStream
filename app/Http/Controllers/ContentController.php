@@ -15,6 +15,11 @@ class ContentController extends Controller
      */
     public function index(Request $request)
     {
+        //==============================================
+        //  VIDSTREAM MAIN CONTENT PAGE
+        //==============================================
+
+
         if($request->session()->exists('session_account')){
             $data['genres'] = ['Action','Comedy','Horror', 'War'];
 
@@ -36,7 +41,7 @@ class ContentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {  //wtf?
        return view('content-data.content', $data);
     }
 

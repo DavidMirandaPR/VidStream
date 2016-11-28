@@ -19,11 +19,18 @@ class APIController extends Controller
      */
     public function index()
     {
+        //=========================================
+        // MAIN VIEW OF THE API CONTROLLER
+        //=========================================
+
         $data['movies'] = Content::where('genre', 'LIKE', '%Comedy%')
                         ->orderBy('year', 'desc')
                         ->limit(100)->get();
         return view('search.content', $data);
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -32,6 +39,13 @@ class APIController extends Controller
      */
     public function create()
     {
+        //=====================================================
+        //  GET ALL THE INFO ABOUT THE MOVIE AND STORE IT TO DB
+        //  WE NEED A TABLE FILLED WITH THE IMDB ID ATTRIBUTE
+        //=====================================================
+
+
+
         $content = Content::get();
 
         $att = ['Title','Year','Rated','Released','Runtime','Genre','Director',
@@ -60,7 +74,6 @@ class APIController extends Controller
                 }
             }
         }
-        echo $count;
     }
 
     /**
@@ -76,6 +89,16 @@ class APIController extends Controller
     //============================
     public function store(Request $request)
     {
+
+        //==================================================
+        //  IF THERE IS AN INPUT FIND THE SPECIFID MOVIE
+        //  AND STORE IT INTO DB
+        //  IF THERE IS NO INPUT THEN PROCEED TO FILL THE DB
+        //  TABLE CONTENT WITH ONLY THE IMDB OF THE MOVIE TITLES
+        //  FROM THE MOVIES TABLE
+        //===================================================
+
+
         if($request->input('Title') != '')
         {
             $title = $request->input('Title');
@@ -96,7 +119,7 @@ class APIController extends Controller
             $content = new Content;
             $content->imdbID = $obj['imdbID'];
             $content->save();
-            dd($content);
+            //dd($content);
             for ($i=0; $i < 16; $i++) 
             {
                 echo "Updating the ".$DBatt[$i]." of the instance <br>";

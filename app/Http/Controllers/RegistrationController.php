@@ -13,7 +13,9 @@ class RegistrationController extends Controller
      */
     public function index(Request $request)
     {
-      //dd($request);
+      //==============================================
+      //  VIDSTREAM REGISTRATIO HOMEPAGE
+      //==============================================
       if ($request->session()->has('session_account')) {
         return redirect('/content');
       }

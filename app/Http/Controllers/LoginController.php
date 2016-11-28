@@ -17,6 +17,10 @@ class LoginController extends Controller
      */
     public function index(Request $request)
     {
+        //========================================
+        //      VIDSTREAM LOGIN HOMEPAGE
+        //========================================
+
         if ($request->session()->has('session_account')) {
             return redirect('/content');
         }
@@ -46,6 +50,10 @@ class LoginController extends Controller
     //======================
     public function store(Request $request)
     {
+
+        //======================================
+        //  LOGIN CREDENTIALS VALIDATION
+        //======================================
         $email    = $request->input('email');
         $password = $request->input('password');
 

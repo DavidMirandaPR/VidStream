@@ -13,7 +13,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+        //==================================
+        //      /home delete in production
+        //==================================   
         return view('content-data.content');
     }
 

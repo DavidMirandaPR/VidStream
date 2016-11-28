@@ -37,8 +37,9 @@ Route::get('/usernames',function(){
 		return redirect('/login');
 	}
 });
-Route::post('/support','ProfileController@ticketCreate');
 
+Route::post('/support','ProfileController@ticketCreate');
+Route::post('/editUser','ProfileController@editUser');
 Route::post('/edit', 'ProfileController@editProfile');
 Route::get('/logout','SessionController@forgetSession');
 Route::post('/adduser', 'ProfileController@addUser');

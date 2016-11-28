@@ -24,22 +24,22 @@ class ProfileController extends Controller
        $newLevel     = $request->input('level');
 
        if($newEmail){
-            $updateEmail = Account::find($account_id)->update(['email' => $newEmail]);
+            Account::find($account_id)->update(['email' => $newEmail]);
             $request->session()->put('session_email', $newEmail);
        }
        if($newPassword){
-            $updatePass  = Account::find($account_id)->update(['password' => $newPassword]);
+            Account::find($account_id)->update(['password' => $newPassword]);
        }
        if($newFirstname){
-            $updateFN    = Account::find($account_id)->update(['firstName' => $newFirstname]);
+            Account::find($account_id)->update(['firstName' => $newFirstname]);
             $request->session()->put('session_firstName', $newFirstname);
        }
        if($newLastname){
-            $updateLN    = Account::find($account_id)->update(['lastName' => $newLastname]);
+            Account::find($account_id)->update(['lastName' => $newLastname]);
             $request->session()->put('session_lastName', $newLastname);
        }
        if($newLevel){
-            $updateLN    = Account::find($account_id)->update(['level' => $newLevel]);
+            Account::find($account_id)->update(['level' => $newLevel]);
             $request->session()->put('session_level', $newLevel);
        }
        return redirect('/profile');
@@ -100,8 +100,32 @@ class ProfileController extends Controller
         //===================================
         //     SWITCH CURRENT SESSION USER
         //===================================
+
         $username = $request->input('un');
         $request->session()->put('session_username', $username);
         return redirect('/profile');
+    }
+
+    public function editUser(Request $request)
+    {
+        //========================================
+        //      EDIT AN ALREADY EXISTING USERNAME
+        //========================================
+
+
+        $selUID  = $request->input('selectedUID');
+        $newUser = $request->input('changeUser');
+        if($selUID && $newUser)
+        {
+            $user = Username::where('id','=',$selUID)->get()->first();
+            Username::where('id','=',$selUID)->update(['username' => $newUser]);
+
+            //If the user is editing the same username from which it is logged in Update the session
+            if($user->username == $request->session()->get('session_username')){
+                $request->session()->put('session_username', $newUser);
+            }
+            Session::flash('message', 'Username Updated!!');
+            return redirect('/profile');
+        }
     }
 }

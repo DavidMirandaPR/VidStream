@@ -111,6 +111,24 @@
 				@endforeach
 			</ul>
 
+<!-- /////////////////////////        EDIT USERNAME        ///////////////////////// -->
+			
+
+			@foreach($usernames as $user)
+			<form class="col s12" action="/editUser" method="POST" style="background-color: gray;">
+				<li class="collection-item">
+					Edit: {{ $user->username }}
+					<input type="text" name="changeUser" value="">
+					<input type="hidden" name="selectedUID" value="{{$user->id}}">
+					<input type="submit" name="submitBtn" value="Submit Changes">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+				</li>
+			</form>
+			@endforeach
+
+
+
+<!-- /////////////////////////      END EDIT USERNAME        ///////////////////////// -->
 			<div class="container">
 				<div class="row">
 				<!-- ADD USER FORM -->
