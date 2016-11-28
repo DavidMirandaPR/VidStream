@@ -77,6 +77,7 @@ class RegistrationController extends Controller
       $acc = Account::where('id', '=', $account->id)
                       ->whereNull('username_id')
                       ->update(['username_id' => $userName->id]);
+      return redirect('/login');
     }
     /**
      * Display the specified resource.

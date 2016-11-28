@@ -23,7 +23,6 @@ Route::get('/', function () {
 	}
 });
 
-Route::post('/random','ProfileController@randomName');
 Route::get('/switchUser','ProfileController@switchUser');
 
 Route::get('/usernames',function(){
@@ -38,11 +37,16 @@ Route::get('/usernames',function(){
 	}
 });
 
+Route::post('/deleteUser', 'ProfileController@deleteUser');
+Route::get('/logout','SessionController@forgetSession');
+Route::get('/switchUser','ProfileController@switchUser');
+
+Route::post('/random','ProfileController@randomName');
 Route::post('/support','ProfileController@ticketCreate');
 Route::post('/editUser','ProfileController@editUser');
 Route::post('/edit', 'ProfileController@editProfile');
-Route::get('/logout','SessionController@forgetSession');
 Route::post('/adduser', 'ProfileController@addUser');
+Route::post('/random','ProfileController@randomName');
 
 
 //===============================================

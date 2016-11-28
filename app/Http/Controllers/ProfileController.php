@@ -53,10 +53,13 @@ class ProfileController extends Controller
 
         $newUser = $request->input('addUser');
         $accID   = $request->session()->get('session_account');
+
+        $exists = Username::where('account_id','=',$accID)->where('username','=', $newUser)->get()->first();
+
         if($newUser)
         {
-            if(!Username::where('username','=',$newUser)->exists())
-           {
+            if(!$exists)
+            {
                 $UN = new Username;
                 $UN->username   = $newUser;
                 $UN->account_id = $accID;
@@ -71,6 +74,8 @@ class ProfileController extends Controller
 
         }
     }
+
+
 		public function randomName(Request $request)
 		{
 			return "I think this worked";
@@ -126,6 +131,22 @@ class ProfileController extends Controller
             }
             Session::flash('message', 'Username Updated!!');
             return 'Username Updated';
+        }
+    }
+
+
+    public function deleteUser(Request $request)
+    {
+        //======================================
+        //  DELETE AN EXISTING USERNAME
+        //======================================
+
+        $selUID = $request->input('selectedUID');
+        $accID   = $request->session()->get('session_account');
+
+        if($selUID)
+        {
+            Username::find($selUID)->delete();
         }
     }
 }
