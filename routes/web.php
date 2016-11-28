@@ -19,13 +19,31 @@ Route::get('/', function () {
 	}
 	else
 	{
-    	return view('user-portal.login');
+    	return redirect('/login');
 	}
 });
+
 Route::post('/random','ProfileController@randomName');
+Route::get('/switchUser','ProfileController@switchUser');
+
+Route::get('/usernames',function(){
+	if(Session::has('session_account'))
+	{
+		$data['usernames'] = Username::where('account_id', '=', Session::get('session_account'))->get();
+		return view('user-portal.user', $data);
+	}
+	else
+	{
+		return redirect('/login');
+	}
+});
+Route::post('/support','ProfileController@ticketCreate');
+
 Route::post('/edit', 'ProfileController@editProfile');
 Route::get('/logout','SessionController@forgetSession');
 Route::post('/adduser', 'ProfileController@addUser');
+
+
 //===============================================
 //	Note: Add Constraints to resource controllers
 //===============================================

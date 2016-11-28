@@ -70,3 +70,10 @@ table#users{
 	border:1px solid #000;
 
 }
+
+div#squares {
+	display:inline;
+	background-color:#000000;	
+	width:150px;
+	height:150px;
+}
