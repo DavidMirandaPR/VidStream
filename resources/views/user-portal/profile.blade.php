@@ -20,7 +20,7 @@
 	<ul id="dropdown" class="dropdown-content">
 		<li><a href="{{ url('profile') }}">Profile</a></li>
 		<li class="divider"></li>
-		<li><a href="#">Switch User</a></li>
+		<li><a href="{{ url('usernames') }}">Switch User</a></li>
 		<li class="divider"></li>
 		<li><a href="{{ url('logout') }}">Logout</a></li>
 	</ul>

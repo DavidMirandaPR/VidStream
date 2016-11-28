@@ -23,7 +23,6 @@ Route::get('/', function () {
 	}
 });
 
-Route::get('/switchUser','ProfileController@switchUser');
 
 Route::get('/usernames',function(){
 	if(Session::has('session_account'))
@@ -36,17 +35,32 @@ Route::get('/usernames',function(){
 		return redirect('/login');
 	}
 });
-
-Route::post('/deleteUser', 'ProfileController@deleteUser');
-Route::get('/logout','SessionController@forgetSession');
+//================================================
+//				CONTENT CONTROLLER
+//================================================
+//RESTful Controller @ VidStream.tv/content
+Route::resource('content','ContentController');
+Route::post('/viewMovie', 'ContentController@viewMovie');
+//================================================
+//				PROFILE CONTROLLER
+//================================================
+// GETS
 Route::get('/switchUser','ProfileController@switchUser');
 
+//POSTS
+Route::post('/deleteUser', 'ProfileController@deleteUser');
 Route::post('/random','ProfileController@randomName');
 Route::post('/support','ProfileController@ticketCreate');
 Route::post('/editUser','ProfileController@editUser');
 Route::post('/edit', 'ProfileController@editProfile');
 Route::post('/adduser', 'ProfileController@addUser');
 Route::post('/random','ProfileController@randomName');
+
+//================================================
+//	SESSION CONTROLLER
+//================================================
+Route::get('/logout','SessionController@forgetSession');
+
 
 
 //===============================================
@@ -57,8 +71,8 @@ Route::get('/account', function(){
 	$data['users'] = Account::get();
     return view('user-portal.admin', $data);
 });
-//RESTful Controller @ VidStream.tv/content
-Route::resource('content','ContentController');
+
+
 
 //RESTful Controller @ VidStream.tv/register
 Route::resource('register','RegistrationController');

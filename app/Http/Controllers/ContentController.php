@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 use App\Content;
 
@@ -13,17 +14,19 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //==============================================
+    //  VIDSTREAM MAIN CONTENT PAGE
+    //==============================================  
+
     public function index(Request $request)
     {
-        //==============================================
-        //  VIDSTREAM MAIN CONTENT PAGE
-        //==============================================
-
-
-        if($request->session()->exists('session_account')){
+        if($request->session()->exists('session_account'))
+        {
             $data['genres'] = ['Action','Comedy','Horror', 'War'];
 
-    			for($i = 0; $i < count($data['genres']); $i++){
+    			for($i = 0; $i < count($data['genres']); $i++)
+                {
     				$data[$data['genres'][$i]] = Content::where('genre', 'LIKE', '%' . $data['genres'][$i] . '%')
                             					->orderBy('year', 'desc')
                                					->limit(10)->get();
@@ -35,14 +38,26 @@ class ContentController extends Controller
             return view('user-portal.login');
     }
 
+
+
+    public function seeContent(Request $request)
+    {
+        $imdbID = $request->input('imdbID');
+        echo $imdbID;
+        $movie = Content::find($imdbID);
+        dd($movie);
+        
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {  //wtf?
-       return view('content-data.content', $data);
+    {  
+       //return view('content-data.content', $data);
     }
 
     /**
@@ -53,11 +68,11 @@ class ContentController extends Controller
      */
 
     //============================
-    //          POST
+    //          POST to /content
     //============================
     public function store(Request $request)
     {
-
+        echo "store";
     }
 
     /**
@@ -66,10 +81,46 @@ class ContentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        
+        $imdbID = $request->input('imdbID');
+
+        $data['movie'] = Content::where('imdbID','=', $imdbID)->get()->first();
+        
+        return view('content-data.info', $data);
     }
+
+
+    public function viewMovie(Request $request)
+    {
+        $imdbID    = $request->input('imdbID');
+        $userLevel = $request->session()->get('session_level');
+
+        if($userLevel < 2)
+        {
+            Session::flash('message', 'You must be a premium user in order to view the movie');
+        }
+        else
+        {
+            $movie = Content::where('imdbID','=', $imdbID)->get()->first();
+            $views = $movie->views;
+            echo $views;
+            exit;
+            if($movie->views)
+            {
+                $views += 1;
+                Content::where('imdbID','=',$imdbID)->update(['views' => $views]);
+            }
+            else
+            {
+               Content::where('imdbID','=',$imdbID)->update(['views' => 1]); 
+            }
+            echo "Movie has now $views views";
+
+        }
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -79,7 +130,7 @@ class ContentController extends Controller
      */
     public function edit($id)
     {
-        //
+        echo "edit";
     }
 
     /**

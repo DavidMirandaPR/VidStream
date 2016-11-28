@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsernamesTable extends Migration
+class CreateUsersHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,30 +13,25 @@ class CreateUsernamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('usernames', function (Blueprint $table) {
+        Schema::create('usersHistory', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('account_id');
-            $table->string('username');
-            $table->integer('history_id')->nullable();
-            $table->integer('genrePreference_id')->nullable();
+            $table->integer('username_id');
+            $table->string('imdbID')->nullable();
             $table->timestamps();
-
-            $table->unique(array('account_id','username'));
-
 
             //===================================
             //          FOREIGN KEYS
             //===================================
-
             $table->foreign('account_id')
                   ->references('id')->on('accounts');
 
-            $table->foreign('history_id')
-                  ->references('id')->on('usersHistory')->onDelete('cascade');
+            $table->foreign('username_id')
+                  ->references('id')->on('usernames');
 
-            $table->foreign('genrePreference_id')
-                  ->references('id')->on('genresPreferences')->onDelete('cascade');
-        });
+            $table->foreign('imdbID')
+                  ->references('imdbID')->on('content');
+        });    
     }
 
     /**
@@ -46,7 +41,7 @@ class CreateUsernamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usernames');
-
+        Schema::dropIfExists('usersHistory');
+   
     }
 }

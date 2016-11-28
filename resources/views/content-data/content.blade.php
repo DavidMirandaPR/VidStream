@@ -24,9 +24,9 @@
 			<h4 class="carousel-title">{{ $genre }}</h4>
 			<div class="movies-grid">
 				@foreach($data[$genre] as $item)
-					<span class="col s6">
-						<img src="{{ $item->poster }}" width="200px" height="150px" alt="{{ $item->title }}">
-					</span>
+						<span class="col s6">
+							<a href="http://vidstream.tv/content/movie?imdbID={{$item->imdbID}}"><img src="{{ $item->poster }}" width="200px" height="150px" alt="{{ $item->title }}"></a>
+						</span>
 				@endforeach
 			</div>
 		@endforeach
