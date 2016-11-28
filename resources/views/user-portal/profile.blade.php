@@ -76,13 +76,14 @@
 			@if(Session::has('message'))
 			<p class="alert {{ Session::get('alert-info') }}">{{ Session::get('message') }}</p>
 			@endif
-			
+
 			@foreach($usernames as $user)
 
 				<div>{{ $user->username }}</div>
 			@endforeach
 			<div class="container">
 				<div class="row">
+				<!-- ADD USER FORM -->
 					<form class="col s12" action="/adduser" method="POST">
 							<div class="row">
 								<div class="input-field col s12">
@@ -91,6 +92,17 @@
 								</div>
 								<button class="btn submit-btn" type="submit" name="action">Add User</button>
 							</div>
+						<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+					</form>
+				<!-- SUPPORT TICKET FORM -->
+					<form class="col s12" action="/support" method="POST">
+							<div class="row">
+								<div class="input-field col s6">
+									<input type="text" name="msg" value="">
+									<label for="msg">Write your complain here!</label>
+								</div>
+							</div>
+							<button class="btn submit-btn" type="submit" name="action">Submit Ticket</button>
 						<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 					</form>
 				</div>

@@ -32,6 +32,7 @@ class CreateContentTable extends Migration
             $table->double('imdbRating')->nullable();
             $table->string('imdbVotes')->nullable() ; //for the commas
             $table->string('type')->nullable(); //Movie, series
+            $table->integer('views')->nullable(); //Holds the times this movie has been watched
             $table->timestamps();
             //Adding Primary Key to the Table 'content'
             $table->primary('imdbID');

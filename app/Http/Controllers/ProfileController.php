@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Account;
 use App\Username;
+use App\SupportTicket;
 
 class ProfileController extends Controller
 {
@@ -23,18 +24,18 @@ class ProfileController extends Controller
             $request->session()->put('session_email', $newEmail);
        }
        if($newPassword){
-            $updatePass = Account::find($account_id)->update(['password' => $newPassword]);
+            $updatePass  = Account::find($account_id)->update(['password' => $newPassword]);
        }
        if($newFirstname){
-            $updateFN = Account::find($account_id)->update(['firstName' => $newFirstname]);
+            $updateFN    = Account::find($account_id)->update(['firstName' => $newFirstname]);
             $request->session()->put('session_firstName', $newFirstname);
        }
        if($newLastname){
-            $updateLN = Account::find($account_id)->update(['lastName' => $newLastname]);
+            $updateLN    = Account::find($account_id)->update(['lastName' => $newLastname]);
             $request->session()->put('session_lastName', $newLastname);
        }
        if($newLevel){
-            $updateLN = Account::find($account_id)->update(['level' => $newLevel]);
+            $updateLN    = Account::find($account_id)->update(['level' => $newLevel]);
             $request->session()->put('session_level', $newLevel);
        }
        return redirect('/profile');
@@ -42,7 +43,6 @@ class ProfileController extends Controller
 
     public function addUser(Request $request)
     {
-        //dd($request);
         $newUser = $request->input('addUser');
         $accID   = $request->session()->get('session_account');
         if($newUser)
@@ -62,5 +62,26 @@ class ProfileController extends Controller
             }
 
         }
+    }
+
+    public function ticketHandler(Request $request)
+    {
+        $msg          = $request->input('msg');
+        $username     = $request->session()->get('session_username');
+        $UN_ID        = Username::where('username', '=', $username)->get()->first();
+        $account_id   = $request->session()->get("session_account");
+
+        $suppTicket              = new supportTicket;
+        $suppTicket->message     = $msg;
+        $suppTicket->username_id = $UN_ID->id;
+        $suppTicket->save();
+        echo "Support Ticket Made";
+    }
+
+    public function switchUser(Request $request)
+    {
+        $username = $request->input('un');
+        $request->session()->put('session_username', $username);
+        return redirect('/profile');        
     }
 }
