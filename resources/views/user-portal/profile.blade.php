@@ -169,8 +169,13 @@
 							<form class="col s12" action="/adduser" method="POST">
 									<div class="row">
 										<div class="input-field col s12">
-											<input type="text" name="addUser" value="">
-											<label for="addUser">Add Genre</label>
+											<select>
+									      <option value="" disabled selected>Choose genre to add</option>
+									      <option value="1">Option 1</option>
+									      <option value="2">Option 2</option>
+									      <option value="3">Option 3</option>
+									    </select>
+									    <label>Genres</label>
 										</div>
 										<button class="btn submit-btn" type="submit" name="action">Add Genre</button>
 									</div>
