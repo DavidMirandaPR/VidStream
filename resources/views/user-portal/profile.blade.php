@@ -72,10 +72,18 @@
 		</div>
 		<!-- Username Tab -->
 		<div id="username" class="col s12">
-			<!-- Add User Container -->
+			<!-- Add User Container -->			
+			@if(Session::has('message'))
+			<p class="alert {{ Session::get('alert-info') }}">{{ Session::get('message') }}</p>
+			@endif
+			
+			@foreach($usernames as $user)
+
+				<div>{{ $user->username }}</div>
+			@endforeach
 			<div class="container">
 				<div class="row">
-					<form class="col s12" action="/login" method="POST">
+					<form class="col s12" action="/adduser" method="POST">
 							<div class="row">
 								<div class="input-field col s12">
 									<input type="text" name="addUser" value="">
