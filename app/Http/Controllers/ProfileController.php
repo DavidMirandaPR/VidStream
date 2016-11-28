@@ -125,7 +125,7 @@ class ProfileController extends Controller
                 $request->session()->put('session_username', $newUser);
             }
             Session::flash('message', 'Username Updated!!');
-            return redirect('/profile');
+            return 'Username Updated';
         }
     }
 }

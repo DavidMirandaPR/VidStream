@@ -8,7 +8,7 @@
 		$(document).ready(function(){
 			$.post('/random', {
 				_token: $('meta[name=csrf-token]').attr('content'),
-				firstChip: 'JON NO HA HECHO NADA !!!!',
+				firstChip: '',
 				secondShip: ' World!'
 			}).done(function(msg){
 			});
@@ -95,13 +95,14 @@
 			<ul class="collection with-header">
 				<li class="collection-header">
 					<h4>Current Username: {{ Session::get('session_username') }}</h4>
-					<p>Hint: To edit current username, switch user.</p>
+					<p>Hint: To delete current username, switch user.</p>
+					<p>Warning: Deleting a username will delete all of it's data.</p>
 				</li>
 				@foreach($usernames as $user)
 					<li class="collection-item">
 						<div>
 							{{ $user->username }}<a href="#!" class="secondary-content">
-								<i onClick="editUser('{{ $user->username }}')" class="material-icons edit-btn">send</i>
+								<i onClick="editUser('{{ $user->username }}', '{{ $user->id }}')" class="material-icons edit-btn">send</i>
 								@if($user->username != Session::get('session_username'))
 								<i onClick="trigger('{{ $user->username }}')" class="material-icons close-btn">close</i>
 								@endif
@@ -110,28 +111,9 @@
 					</li>
 				@endforeach
 			</ul>
-
-<!-- /////////////////////////        EDIT USERNAME        ///////////////////////// -->
-			
-
-			@foreach($usernames as $user)
-			<form class="col s12" action="/editUser" method="POST" style="background-color: gray;">
-				<li class="collection-item">
-					Edit: {{ $user->username }}
-					<input type="text" name="changeUser" value="">
-					<input type="hidden" name="selectedUID" value="{{$user->id}}">
-					<input type="submit" name="submitBtn" value="Submit Changes">
-					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-				</li>
-			</form>
-			@endforeach
-
-
-
-<!-- /////////////////////////      END EDIT USERNAME        ///////////////////////// -->
+			<!-- ADD USER FORM -->
 			<div class="container">
 				<div class="row">
-				<!-- ADD USER FORM -->
 					<form class="col s12" action="/adduser" method="POST">
 							<div class="row">
 								<div class="input-field col s12">
