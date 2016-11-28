@@ -72,7 +72,7 @@
 		</div>
 		<!-- Username Tab -->
 		<div id="username" class="col s12">
-			<!-- Add User Container -->			
+			<!-- Add User Container -->						
 			@if(Session::has('message'))
 			<p class="alert {{ Session::get('alert-info') }}">{{ Session::get('message') }}</p>
 			@endif

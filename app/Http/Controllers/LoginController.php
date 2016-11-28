@@ -56,7 +56,7 @@ class LoginController extends Controller
               SessionController::putSession($request);
               if($user->level == 1)
               {
-                return redirect('/content');
+                return redirect('/usernames');
               }
               else if($user->level == 2)
               {

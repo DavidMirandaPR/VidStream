@@ -12,6 +12,10 @@ class ProfileController extends Controller
 {
     public function editProfile(Request $request)
     {
+        //===============================================
+        //              ACCOUNT PROFILE EDIT
+        //===============================================
+
        $account_id   = $request->session()->get("session_account");
        $newEmail     = $request->input('email');
        $newPassword  = $request->input('password');
@@ -43,6 +47,10 @@ class ProfileController extends Controller
 
     public function addUser(Request $request)
     {
+        //========================================
+        //      ADDING USER FUNCTION
+        //========================================
+
         $newUser = $request->input('addUser');
         $accID   = $request->session()->get('session_account');
         if($newUser)
@@ -64,8 +72,11 @@ class ProfileController extends Controller
         }
     }
 
-    public function ticketHandler(Request $request)
+    public function ticketCreate(Request $request)
     {
+        //========================================
+        //  SUPPORT TICKET ISSUER FUNCTION
+        //========================================
         $msg          = $request->input('msg');
         $username     = $request->session()->get('session_username');
         $UN_ID        = Username::where('username', '=', $username)->get()->first();
@@ -75,11 +86,16 @@ class ProfileController extends Controller
         $suppTicket->message     = $msg;
         $suppTicket->username_id = $UN_ID->id;
         $suppTicket->save();
-        echo "Support Ticket Made";
+        Session::flash('message', 'Support Ticket Send!!'); 
+
+        return redirect('/profile');
     }
 
     public function switchUser(Request $request)
     {
+        //===================================
+        //     SWITCH CURRENT SESSION USER
+        //===================================
         $username = $request->input('un');
         $request->session()->put('session_username', $username);
         return redirect('/profile');        
