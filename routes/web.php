@@ -10,7 +10,7 @@
 |
 */
 use App\Account;
-
+use App\Username;
 //Route for register testing
 Route::get('/', function () {
 	if(Session::has('session_account'))
@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::post('/random','ProfileController@randomName');
 Route::post('/edit', 'ProfileController@editProfile');
 Route::get('/logout','SessionController@forgetSession');
-
+Route::post('/adduser', 'ProfileController@addUser');
 //===============================================
 //	Note: Add Constraints to resource controllers
 //===============================================
@@ -59,5 +59,7 @@ Route::group(['prefix' => 'api'], function () {
 
 //Profile testing routes
 Route::get('profile', function(){
-		return view('user-portal.profile');
+	$acc = Session::get('session_account');
+	$data['usernames'] = Username::where('account_id', '=', $acc)->get();
+		return view('user-portal.profile', $data);
 });

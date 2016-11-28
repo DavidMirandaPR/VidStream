@@ -13,13 +13,6 @@
 			}).done(function(msg){
 			});
 		});
-
-		$('.chips').material_chip();
-
-		$('.chips').on('chip.add', function(e, chip){
-			alert("e: " + e);
-			alert("chip: " + chip);
-		});
 	</script>
 @endsection
 
@@ -94,20 +87,33 @@
 		</div>
 		<!-- Username Tab -->
 		<div id="username" class="col s12">
-			<h4>Usernames in account!</h4>
-			<p>Caution: Deleting a username will also delete it's data, this action is non-reversable!</p>
-			<div class="chip chip-initial" data-index="0" data-initialized="true">
-				<div class="chip">
-					Tag
-					<i class="close material-icons">close</i>
-				</div>
-				<input class="input" type="text" placeholder="">
-			</div>
-
 			<!-- Add User Container -->
-			{{-- <div class="container">
+			<div class="container">
+			@if(Session::has('message'))
+			<p class="alert {{ Session::get('alert-info') }}">{{ Session::get('message') }}</p>
+			@endif
+			<ul class="collection with-header">
+				<li class="collection-header">
+					<h4>Current Username: {{ Session::get('session_username') }}</h4>
+					<p>Hint: To edit current username, switch user.</p>
+				</li>
+				@foreach($usernames as $user)
+					<li class="collection-item">
+						<div>
+							{{ $user->username }}<a href="#!" class="secondary-content">
+								<i onClick="editUser('{{ $user->username }}')" class="material-icons edit-btn">send</i>
+								@if($user->username != Session::get('session_username'))
+								<i onClick="trigger('{{ $user->username }}')" class="material-icons close-btn">close</i>
+								@endif
+							</a>
+						</div>
+					</li>
+				@endforeach
+			</ul>
+
+			<div class="container">
 				<div class="row">
-					<form class="col s12" action="/login" method="POST">
+					<form class="col s12" action="/adduser" method="POST">
 							<div class="row">
 								<div class="input-field col s12">
 									<input type="text" name="addUser" value="">
@@ -118,7 +124,7 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 					</form>
 				</div>
-			</div> --}}
+			</div>
 		</div>
 		<!-- Movies Tab -->
 		<div id="movies" class="col s12">
