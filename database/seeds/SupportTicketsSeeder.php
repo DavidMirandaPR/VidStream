@@ -11,10 +11,10 @@ class SupportTicketsSeeder extends Seeder
      */
     public function run()
     {
-		DB::table('supportTicket')->insert([
+		DB::table('supportTickets')->insert([
             'id' 			=> 1,
             'username_id' 	=> 1,
-            'message'	  	=> 'This is an example of a Support Ticket';
+            'message'	  	=> 'This is an example of a Support Ticket',
             'created_at'  	=> date("Y-m-d H:i:s"), 
             'updated_at'  	=> date("Y-m-d H:i:s") 
         ]);    
