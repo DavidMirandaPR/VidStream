@@ -11,6 +11,7 @@
 */
 use App\Account;
 use App\Username;
+use App\Genre;
 //Route for register testing
 Route::get('/', function () {
 	if(Session::has('session_account'))
@@ -55,6 +56,12 @@ Route::post('/editUser','ProfileController@editUser');
 Route::post('/edit', 'ProfileController@editProfile');
 Route::post('/adduser', 'ProfileController@addUser');
 Route::post('/random','ProfileController@randomName');
+Route::get('profile', function(){
+	$acc = Session::get('session_account');
+	$data['usernames'] = Username::where('account_id', '=', $acc)->get();
+	$data['genres']    = Genre::get();
+	return view('user-portal.profile', $data);
+});
 
 //================================================
 //	SESSION CONTROLLER
@@ -93,10 +100,3 @@ Route::group(['prefix' => 'api'], function () {
 	});
 });
 
-
-//Profile testing routes
-Route::get('profile', function(){
-	$acc = Session::get('session_account');
-	$data['usernames'] = Username::where('account_id', '=', $acc)->get();
-		return view('user-portal.profile', $data);
-});
