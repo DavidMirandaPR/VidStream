@@ -147,6 +147,7 @@ class ProfileController extends Controller
         if($selUID)
         {
             Username::find($selUID)->delete();
+						return "Sucessfully Deleted User";
         }
     }
 }

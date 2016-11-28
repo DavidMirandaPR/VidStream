@@ -104,7 +104,7 @@
 							{{ $user->username }}<a href="#!" class="secondary-content">
 								<i onClick="editUser('{{ $user->username }}', '{{ $user->id }}')" class="material-icons edit-btn">send</i>
 								@if($user->username != Session::get('session_username'))
-								<i onClick="trigger('{{ $user->username }}')" class="material-icons close-btn">close</i>
+								<i onClick="deleteUser('{{ $user->id }}')" class="material-icons close-btn">close</i>
 								@endif
 							</a>
 						</div>
