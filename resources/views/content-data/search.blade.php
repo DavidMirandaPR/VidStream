@@ -18,24 +18,13 @@
 	</ul>
 @endsection
 @section('content')
-
 	<main>
-		<form action="/search" method="POST">
-			<div>
-				<input type="text" name="movieTitle">
-			</div>	
-			<input type="submit" name="action" value="Search">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-		</form>
-		@foreach($data['genres'] as $genre)
-			<h4 class="carousel-title">{{ $genre }}</h4>
-			<div class="movies-grid">
-				@foreach($data[$genre] as $item)
-						<span class="col s6">
-							<a href="http://vidstream.tv/content/movie?imdbID={{$item->imdbID}}"><img src="{{ $item->poster }}" width="200px" height="150px" alt="{{ $item->title }}"></a>
-						</span>
-				@endforeach
-			</div>
+
+		@foreach($movies as $m)
+			<span class="col s6">
+				<a href="http://vidstream.tv/content/movie?imdbID={{$m->imdbID}}"><img src="{{ $m->poster }}" width="200px" height="150px" alt="{{ $m->title }}"></a>
+			</span>
 		@endforeach
+
 	</main>
 @endsection

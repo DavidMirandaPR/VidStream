@@ -50,6 +50,20 @@ class ContentController extends Controller
 
     }
 
+
+    public function contentSearch(Request $request)
+    {
+        $movieTitle = $request->input('movieTitle');
+
+        $data['movies'] = Content::where('title','LIKE','%' . $movieTitle . '%')
+                        ->orderBy('year', 'desc')
+                        ->limit(15)->get();
+        
+        return view('content-data.search', $data);
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -92,21 +106,26 @@ class ContentController extends Controller
     }
 
 
+    //==========================================
+    //      WATCH A MOVIE FUNCTION
+    //==========================================
+
+
+
     public function viewMovie(Request $request)
     {
         $imdbID    = $request->input('imdbID');
         $userLevel = $request->session()->get('session_level');
 
-        if($userLevel < 2)
+        if($userLevel == 1)
         {
-            Session::flash('message', 'You must be a premium user in order to view the movie');
+            echo "You need a premium account to see this content Your Level = $userLevel";
         }
         else
         {
             $movie = Content::where('imdbID','=', $imdbID)->get()->first();
             $views = $movie->views;
-            echo $views;
-            exit;
+
             if($movie->views)
             {
                 $views += 1;
@@ -114,7 +133,8 @@ class ContentController extends Controller
             }
             else
             {
-               Content::where('imdbID','=',$imdbID)->update(['views' => 1]); 
+                $views = 1;
+                Content::where('imdbID','=',$imdbID)->update(['views' => $views]); 
             }
             echo "Movie has now $views views";
 

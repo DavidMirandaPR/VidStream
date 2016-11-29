@@ -35,16 +35,18 @@
 	    <nav>
 	      <div class="nav-wrapper">
 					<!-- Logo -->
-					<a href="#!" class="brand-logo"> VidStream</a>
+					<a href="/content" class="brand-logo"> VidStream</a>
 					<!-- Collapsible Menu Icon -->
 					<a href="#" data-activates="mobile-collapse" class="button-collapse">
 						<i class="material-icons">menu</i>
 					</a>
+			
 					<!-- Nav bar Links non collapsed-->
 					@if(Request::is('content') || Request::is('profile'))
 						@section('usertab')
 						@show
 					@else
+
 		        <ul id="nav-mobile" class="right hide-on-med-and-down">
 		          <li>
 								<a href="{{ url('/content') }}">Content</a>
@@ -66,6 +68,7 @@
 	      </div>
 
 	    </nav>
+
 		</header>
 			@section('content')
 			@show

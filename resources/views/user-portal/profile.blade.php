@@ -3,18 +3,6 @@
 @section('header')
 <meta name="csrf-token" content="{!! Session::token() !!}">
 @endsection
-@section('script')
-	<script>
-		$(document).ready(function(){
-			$.post('/random', {
-				_token: $('meta[name=csrf-token]').attr('content'),
-				firstChip: '',
-				secondShip: ' World!'
-			}).done(function(msg){
-			});
-		});
-	</script>
-@endsection
 
 @section('dropdown-structure')
 	<ul id="dropdown" class="dropdown-content">
@@ -150,14 +138,11 @@
 						<li class="collection-header">
 							<h4>Genres for: {{ Session::get('session_username') }}</h4>
 						</li>
-						@foreach($usernames as $user)
+						@foreach($genrePref as $gP)
 							<li class="collection-item">
 								<div>
-									{{ $user->username }}<a href="#!" class="secondary-content">
-										<i onClick="editUser('{{ $user->username }}', '{{ $user->id }}')" class="material-icons edit-btn">send</i>
-										@if($user->username != Session::get('session_username'))
-										<i onClick="deleteUser('{{ $user->id }}')" class="material-icons close-btn">close</i>
-										@endif
+									{{ $gP->genre }}<a href="#" class="secondary-content">
+										<i onClick="deleteGenre('{{ $gP->genre }}')" class="material-icons close-btn">close</i>
 									</a>
 								</div>
 							</li>
@@ -166,15 +151,15 @@
 					<!-- Add Genres USER FORM -->
 					<div class="container">
 						<div class="row">
-							<form class="col s12" action="/adduser" method="POST">
+							<form class="col s12" action="/addGenre" method="POST">
 									<div class="row">
 										<div class="input-field col s12">
-											<select>
-									      <option value="" disabled selected>Choose genre to add</option>
-									      <option value="1">Option 1</option>
-									      <option value="2">Option 2</option>
-									      <option value="3">Option 3</option>
-									    </select>
+											<select name="addGenre">
+										      <option value="" disabled selected>Choose genre to add</option>
+										      @foreach($genres as $g)
+										      <option value="{{ $g->type }}">{{ $g->type }}</option>
+										      @endforeach
+									    	</select>
 									    <label>Genres</label>
 										</div>
 										<button class="btn submit-btn" type="submit" name="action">Add Genre</button>

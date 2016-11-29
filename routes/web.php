@@ -12,6 +12,8 @@
 use App\Account;
 use App\Username;
 use App\Genre;
+use App\GenrePreferences;
+use App\SupportTicket;
 //Route for register testing
 Route::get('/', function () {
 	if(Session::has('session_account'))
@@ -42,6 +44,8 @@ Route::get('/usernames',function(){
 //RESTful Controller @ VidStream.tv/content
 Route::resource('content','ContentController');
 Route::post('/viewMovie', 'ContentController@viewMovie');
+Route::post('/search', 'ContentController@contentSearch');
+
 //================================================
 //				PROFILE CONTROLLER
 //================================================
@@ -49,6 +53,8 @@ Route::post('/viewMovie', 'ContentController@viewMovie');
 Route::get('/switchUser','ProfileController@switchUser');
 
 //POSTS
+Route::post('/addGenre', 'ProfileController@addGenre');
+Route::post('/deleteGenre', 'ProfileController@deleteGenre');
 Route::post('/deleteUser', 'ProfileController@deleteUser');
 Route::post('/random','ProfileController@randomName');
 Route::post('/support','ProfileController@ticketCreate');
@@ -56,30 +62,39 @@ Route::post('/editUser','ProfileController@editUser');
 Route::post('/edit', 'ProfileController@editProfile');
 Route::post('/adduser', 'ProfileController@addUser');
 Route::post('/random','ProfileController@randomName');
+
 Route::get('profile', function(){
-	$acc = Session::get('session_account');
+	$acc 			   = Session::get('session_account');
+	$username 		   = Session::get('session_username');
+	$user   	       = Username::where('username','=',$username)->where('account_id','=',$acc)->get()->first();
 	$data['usernames'] = Username::where('account_id', '=', $acc)->get();
 	$data['genres']    = Genre::get();
-	return view('user-portal.profile', $data);
+	$data['genrePref'] = GenrePreferences::where('username_id','=', $user->id)->get();
+
+	$level = Session::get('session_level');
+
+	if($level == 1 || $level == 2)//Free User and Premium User
+	{
+		return view('user-portal.profile', $data);
+	}
+	if($level == 3) //Staff User
+	{
+		$data['supportTickets'] = SupportTicket::get();
+		return view('user-portal.profile', $data);//Staff VIEW
+	}
+	else
+	{
+		$data['supportTickets'] = SupportTicket::get();
+		$data['accounts']		= Account::get();
+		return view('user-portal.profile', $data);//Admin VIEW
+	}
+	
 });
 
 //================================================
 //	SESSION CONTROLLER
 //================================================
 Route::get('/logout','SessionController@forgetSession');
-
-
-
-//===============================================
-//	Note: Add Constraints to resource controllers
-//===============================================
-
-Route::get('/account', function(){
-	$data['users'] = Account::get();
-    return view('user-portal.admin', $data);
-});
-
-
 
 //RESTful Controller @ VidStream.tv/register
 Route::resource('register','RegistrationController');

@@ -9,6 +9,7 @@ use App\Username;         //Username Model
 use App\GenrePreferences; //GenrePreferences Model
 use App\UserHistory;      //userHistory Model
 use App\SupportTicket;    //SupportTicket Model
+use App\Genre;            //Genre Model
 
 class ProfileController extends Controller
 {
@@ -171,4 +172,74 @@ class ProfileController extends Controller
             return "Sucessfully Deleted User";
         }
     }
+
+    public function deleteGenre(Request $request)
+    {
+        //=========================================
+        //  DELETE AN EXISTING GENRE IN PREFERENCES
+        //=========================================
+
+        $selGenre = $request->input('selectedGenre');
+        //Get Account ID from Session
+        $accID    = $request->session()->get('session_account');
+        //Get Username from Session 
+        $username = $request->session()->get('session_username');
+
+        $user     = Username::where('account_id','=', $accID)
+                               ->where('username','=',$username)->get()->first();
+        if($selGenre)
+        {
+            GenrePreferences::where('account_id','=',$accID)
+                            ->where('username_id','=',$user->id)
+                            ->where('genre','=', $selGenre)->delete(); 
+
+            return "Sucessfully Deleted Genre";
+        }
+        else
+        {
+            return "No Genre Selected";
+        }
+    }
+
+    public function addGenre(Request $request)
+    {
+        //========================================
+        //      ADDING GENRE FUNCTION
+        //========================================
+
+        //Get genre selected
+        $genre  = $request->input('addGenre');
+        //Get Account ID from Session
+        $accID    = $request->session()->get('session_account');
+        //Get Username from Session 
+        $username = $request->session()->get('session_username');
+        //Select the Username who added the Genre
+        $user     = Username::where('account_id','=', $accID)->where('username','=', $username)->get()->first();
+        //Check if the Genre Preference already exists
+        $exists   = GenrePreferences::where('account_id','=',$accID)->where('username_id','=', $user->id)
+                                    ->where('genre','=',$genre)->get()->first();
+
+        if($genre)
+        {
+            if(!$exists)
+            {
+                //==============================================
+                //      Creating a Genre Preferences Instance
+                //==============================================
+                $genrePref              = new GenrePreferences;
+                $genrePref->account_id  = $accID;
+                $genrePref->username_id = $user->id;
+                $genrePref->genre       = $genre;
+                $genrePref->save();
+                return redirect('/profile');
+            }
+            else{
+                Session::flash('message', 'Genre already added to Preferences');
+                return redirect('/profile');
+            }
+
+        }
+    }
+
+
 }

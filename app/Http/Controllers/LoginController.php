@@ -62,24 +62,11 @@ class LoginController extends Controller
             if($user->password == $password)
             {
               SessionController::putSession($request);
-              if($user->level == 1)
-              {
                 return redirect('/usernames');
-              }
-              else if($user->level == 2)
-              {
-                echo "Premium Account";
-              }
-              else if($user->level == 3)
-              {
-                $data['users'] = Account::get();
-                return redirect('/account');
-              }
             }
-            else if($user->level == 4)
+            else
             {
-                $data['users'] = Account::get();
-                return redirect('/account');
+                return redirect('/login');
             }
         }
         else

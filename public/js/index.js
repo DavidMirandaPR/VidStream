@@ -29,3 +29,13 @@ function deleteUser(valueID){
 		window.location = "http://vidstream.tv/profile";
 	});
 }
+
+function deleteGenre(value) {
+	$.post('/deleteGenre', {
+		_token: $('meta[name=csrf-token]').attr('content'),
+		selectedGenre: value
+	}).done(function(msg){
+		alert(msg);
+		window.location = "http://vidstream.tv/profile";
+	});
+}
