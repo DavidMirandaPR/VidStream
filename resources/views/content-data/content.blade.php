@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title', 'Content')
-
+	
 @section('dropdown-structure')
 	<ul id="dropdown" class="dropdown-content">
 		<li><a href="{{ url('profile') }}">Profile</a></li>
