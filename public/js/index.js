@@ -2,6 +2,7 @@ $(document).ready(function(){
 		$(".button-collapse").sideNav();
 		$('select').material_select();
 		$('ul.tabs').tabs();
+		$("#owl-example").owlCarousel();
 });
 
 //Usernames Handler
@@ -20,6 +21,7 @@ function editUser(value, valueID){
 	});
 }
 
+//Delete User
 function deleteUser(valueID){
 	$.post('/deleteUser', {
 		_token: $('meta[name=csrf-token]').attr('content'),

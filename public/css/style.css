@@ -73,7 +73,27 @@ table#users{
 
 div#squares {
 	display:inline;
-	background-color:#000000;	
+	background-color:#000000;
 	width:150px;
 	height:150px;
+}
+
+#owl-example .item{
+  margin: 3px;
+}
+#owl-example .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.movie-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.movie-text {
+	color: #EEEEEE;
 }

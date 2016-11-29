@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title', 'Content')
-
+	
 @section('dropdown-structure')
 	<ul id="dropdown" class="dropdown-content">
 		<li><a href="{{ url('profile') }}">Profile</a></li>
@@ -20,6 +20,7 @@
 @section('content')
 
 	<main>
+
 		@foreach($data['genres'] as $genre)
 			<h4 class="carousel-title">{{ $genre }}</h4>
 			<div class="movies-grid">
