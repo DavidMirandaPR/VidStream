@@ -46,7 +46,6 @@ Route::get('/usernames',function(){
 Route::resource('content','ContentController');
 Route::post('/viewMovie', 'ContentController@viewMovie');
 Route::post('/search', 'ContentController@contentSearch');
-Route::post('/ticketHandler', 'ContentController@ticketHandler');
 
 //================================================
 //				PROFILE CONTROLLER
@@ -55,6 +54,7 @@ Route::post('/ticketHandler', 'ContentController@ticketHandler');
 Route::get('/switchUser','ProfileController@switchUser');
 
 //POSTS
+Route::post('/ticketHandler', 'ProfileController@ticketHandler');
 Route::post('/addGenre', 'ProfileController@addGenre');
 Route::post('/deleteGenre', 'ProfileController@deleteGenre');
 Route::post('/deleteUser', 'ProfileController@deleteUser');

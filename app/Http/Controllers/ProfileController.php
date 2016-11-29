@@ -166,8 +166,8 @@ class ProfileController extends Controller
         {
             Username::find($selUID)->delete();
             GenrePreferences::where('username_id','=',$selUID)->delete();
-            UserHistory::where('username_id','=',$selUID)->delete(); 
-            SupportTicket::where('username_id','=',$selUID)->delete(); 
+            UserHistory::where('username_id','=',$selUID)->delete();
+            SupportTicket::where('username_id','=',$selUID)->delete();
 
             return "Sucessfully Deleted User";
         }
@@ -182,7 +182,7 @@ class ProfileController extends Controller
         $selGenre = $request->input('selectedGenre');
         //Get Account ID from Session
         $accID    = $request->session()->get('session_account');
-        //Get Username from Session 
+        //Get Username from Session
         $username = $request->session()->get('session_username');
 
         $user     = Username::where('account_id','=', $accID)
@@ -191,7 +191,7 @@ class ProfileController extends Controller
         {
             GenrePreferences::where('account_id','=',$accID)
                             ->where('username_id','=',$user->id)
-                            ->where('genre','=', $selGenre)->delete(); 
+                            ->where('genre','=', $selGenre)->delete();
 
             return "Sucessfully Deleted Genre";
         }
@@ -211,7 +211,7 @@ class ProfileController extends Controller
         $genre  = $request->input('addGenre');
         //Get Account ID from Session
         $accID    = $request->session()->get('session_account');
-        //Get Username from Session 
+        //Get Username from Session
         $username = $request->session()->get('session_username');
         //Select the Username who added the Genre
         $user     = Username::where('account_id','=', $accID)->where('username','=', $username)->get()->first();
@@ -240,6 +240,17 @@ class ProfileController extends Controller
 
         }
     }
-
+		public function ticketHandler(Request $request)
+    {
+			exit;
+        $ticketID = $request->input('ticketID');
+        if($ticketID)
+        {
+            SupportTicket::find($ticketID)->update(['handled' => 1]);
+						return "Ticket Handled!";
+        } else {
+					return "Ticket couldn't be handled.";
+				}
+    }
 
 }
