@@ -45,6 +45,7 @@ Route::get('/usernames',function(){
 Route::resource('content','ContentController');
 Route::post('/viewMovie', 'ContentController@viewMovie');
 Route::post('/search', 'ContentController@contentSearch');
+Route::post('/ticketHandler', 'ContentController@ticketHandler');
 
 //================================================
 //				PROFILE CONTROLLER
