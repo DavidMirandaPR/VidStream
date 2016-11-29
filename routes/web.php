@@ -80,13 +80,13 @@ Route::get('profile', function(){
 	if($level == 3) //Staff User
 	{
 		$data['supportTickets'] = SupportTicket::get();
-		return view('user-portal.profile', $data);//Staff VIEW
+		return view('user-portal.staff', $data);//Staff VIEW
 	}
-	else
+	else if($level == 4)
 	{
 		$data['supportTickets'] = SupportTicket::get();
 		$data['accounts']		= Account::get();
-		return view('user-portal.profile', $data);//Admin VIEW
+		return view('user-portal.admin', $data);//Admin VIEW
 	}
 	
 });

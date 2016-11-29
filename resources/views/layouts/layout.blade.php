@@ -13,7 +13,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <!-- AnimateCSS animations-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.0/animate.min.css">
-
 		@section('header')
 		@show
     <!--Local CSS-->
@@ -42,11 +41,6 @@
 					</a>
 			
 					<!-- Nav bar Links non collapsed-->
-					@if(Request::is('content') || Request::is('profile'))
-						@section('usertab')
-						@show
-					@else
-
 
 					@if(Request::is('login') || Request::is('register'))
 
