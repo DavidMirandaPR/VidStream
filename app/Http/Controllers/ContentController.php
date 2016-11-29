@@ -18,7 +18,7 @@ class ContentController extends Controller
 
     //==============================================
     //  VIDSTREAM MAIN CONTENT PAGE
-    //==============================================  
+    //==============================================
 
     public function index(Request $request)
     {
@@ -47,7 +47,7 @@ class ContentController extends Controller
         echo $imdbID;
         $movie = Content::find($imdbID);
         dd($movie);
-        
+
 
     }
 
@@ -59,20 +59,23 @@ class ContentController extends Controller
         $data['movies'] = Content::where('title','LIKE','%' . $movieTitle . '%')
                         ->orderBy('year', 'desc')
                         ->limit(15)->get();
-        
+
         return view('content-data.search', $data);
     }
 
 
-    public function ticketHandler(Request $request)
-    {
-        $ticketID = $request->input('ticketID');
-
-        if($ticketID)
-        {
-            SupportTicket::find($ticketID)->update(['handled' => 1]);
-        }
-    }
+    // public function ticketHandler(Request $request)
+    // {
+		// 	exit;
+    //     $ticketID = $request->input('ticketID');
+    //     if($ticketID)
+    //     {
+    //         SupportTicket::find($ticketID)->update(['handled' => 1]);
+		// 				return "Ticket Handled!";
+    //     } else {
+		// 			return "Ticket couldn't be handled."
+		// 		}
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -80,7 +83,7 @@ class ContentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {  
+    {
        //return view('content-data.content', $data);
     }
 
@@ -107,11 +110,11 @@ class ContentController extends Controller
      */
     public function show(Request $request)
     {
-        
+
         $imdbID = $request->input('imdbID');
 
         $data['movie'] = Content::where('imdbID','=', $imdbID)->get()->first();
-        
+
         return view('content-data.info', $data);
     }
 
@@ -144,7 +147,7 @@ class ContentController extends Controller
             else
             {
                 $views = 1;
-                Content::where('imdbID','=',$imdbID)->update(['views' => $views]); 
+                Content::where('imdbID','=',$imdbID)->update(['views' => $views]);
             }
             echo "Movie has now $views views";
 

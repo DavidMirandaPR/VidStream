@@ -18,7 +18,5 @@ class DatabaseSeeder extends Seeder
         $this->call(GenrePrefSeeder::class);
         $this->call(UsernameSeeder::class);
         $this->call(SupportTicketsSeeder::class);
-
-
     }
 }

@@ -98,3 +98,16 @@ div#squares {
 	color: #EEEEEE;
 }
 
+.red-circle{
+	background-color: red;
+	height: 10px;
+	widows: 10px;
+	border-radius: 50%;
+}
+
+.green-circle {
+	background-color: green;
+	height: 10px;
+	widows: 10px;
+	border-radius: 50%;
+}
