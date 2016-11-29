@@ -14,6 +14,7 @@ use App\Username;
 use App\Genre;
 use App\GenrePreferences;
 use App\SupportTicket;
+
 //Route for register testing
 Route::get('/', function () {
 	if(Session::has('session_account'))
@@ -88,7 +89,7 @@ Route::get('profile', function(){
 		$data['accounts']		= Account::get();
 		return view('user-portal.admin', $data);//Admin VIEW
 	}
-	
+
 });
 
 //================================================
@@ -114,4 +115,3 @@ Route::group(['prefix' => 'api'], function () {
 		Route::resource('getinfo','APIController');
 	});
 });
-
