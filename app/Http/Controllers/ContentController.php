@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 use App\Content;
+use App\SupportTicket;
 
 class ContentController extends Controller
 {
@@ -63,6 +64,15 @@ class ContentController extends Controller
     }
 
 
+    public function ticketHandler(Request $request)
+    {
+        $ticketID = $request->input('ticketID');
+
+        if($ticketID)
+        {
+            SupportTicket::find($ticketID)->update(['handled' => 1]);
+        }
+    }
 
     /**
      * Show the form for creating a new resource.
