@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Session;
 
 use App\Content;
 use App\SupportTicket;
-
+use App\GenrePreferences;
 class ContentController extends Controller
 {
     /**
@@ -22,6 +22,7 @@ class ContentController extends Controller
 
     public function index(Request $request)
     {
+
         if($request->session()->exists('session_account'))
         {
             $data['genres'] = ['Action','Comedy','Horror', 'War'];

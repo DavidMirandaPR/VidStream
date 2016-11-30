@@ -18,7 +18,7 @@
 	</ul>
 @endsection
 @section('content')
-
+{{dd($genrePref)}}
 	<main>
 		<form action="/search" method="POST">
 			<div>
