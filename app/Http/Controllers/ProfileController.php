@@ -94,7 +94,7 @@ class ProfileController extends Controller
     }
 
 
-		public function randomName(Request $request)
+	public function randomName(Request $request)
 		{
 			return "I think this worked";
 		}
@@ -126,7 +126,7 @@ class ProfileController extends Controller
 
         $username = $request->input('un');
         $request->session()->put('session_username', $username);
-        return redirect('/profile');
+        return redirect('/content');
     }
 
     public function editUser(Request $request)
@@ -153,14 +153,11 @@ class ProfileController extends Controller
     }
 
 
-    public function deleteUser(Request $request)
+    public function delUser($accID, $selUID)
     {
         //======================================
         //  DELETE AN EXISTING USERNAME
         //======================================
-
-        $selUID = $request->input('selectedUID');
-        $accID   = $request->session()->get('session_account');
 
         if($selUID)
         {
@@ -168,10 +165,49 @@ class ProfileController extends Controller
             GenrePreferences::where('username_id','=',$selUID)->delete();
             UserHistory::where('username_id','=',$selUID)->delete();
             SupportTicket::where('username_id','=',$selUID)->delete();
-
-            return "Sucessfully Deleted User";
         }
+        return "There has been an error";
     }
+
+    public function deleteUser(Request $request)
+    {
+        //======================================
+        //  DELETE AN EXISTING USERNAME
+        //======================================
+
+        $selUID  = $request->input('selectedUID');
+        $accID   = $request->session()->get('session_account');
+        ProfileController::delUser($accID, $selUID);
+        return "Sucessfully Deleted User";
+
+    }
+
+
+
+
+    public function deleteAcc(Request $request)
+    {
+        //======================================
+        //  DELETE AN EXISTING ACCOUNT
+        //======================================
+
+        $accID     = $request->input('accountID');
+        $usernames = Username::where('account_id','=', $acciD)->get();
+        dd($usernames);
+        if($accID)
+        {
+            foreach($usernames as $user)
+            {
+                ProfileController::delUser($accID, $user->id);
+            }
+            Account::find($accID)->delete();
+            return "Account deletion Successful";
+        }
+        return "There has been an error deleting the account";
+    }
+
+
+
 
     public function deleteGenre(Request $request)
     {

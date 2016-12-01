@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 @section('title', 'Admin')
 @section('header')
+<meta name="csrf-token" content="{!! Session::token() !!}">
 
 @endsection
 @section('content')
@@ -35,18 +36,22 @@
 			<th>Delete Account</th>
 	</tr>
 		<!--////////////////////////////////////////////////////////////////////////
-				USERS table 	I CAN MANAGE THE WHOLE ACCOUNTS TABLE
+				ACCOUNTS table 	I CAN MANAGE THE WHOLE ACCOUNTS TABLE
 		/////////////////////////////////////////////////////////////////////////-->
-	@foreach ($accounts as $u)
+	@foreach ($accounts as $acc)
 	<tr id="users_rows">
-		<td>{{$u->id}}</td>
-		<td>{{$u->firstName}}</td>
-		<td>{{$u->lastName}}</td>
-		<td>{{$u->email}}</td>
-		<td>{{$u->password}}</td>
-		<td>{{$u->level}}</td>
-		<td>{{$u->Payment_ID}}</td>
-		<td><i onClick="ticketHandler('{{ $TK->id }}')" class="material-icons">close</i></a></td>
+		<td>{{$acc->id}}</td>
+		<td>{{$acc->firstName}}</td>
+		<td>{{$acc->lastName}}</td>
+		<td>{{$acc->email}}</td>
+		<td>{{$acc->password}}</td>
+		<td>{{$acc->level}}</td>
+		<td>{{$acc->Payment_ID}}</td>
+		<td>
+			<a href="#" class="">
+				<i onClick="deleteAcc('{{ $acc->id }}')" class="material-icons">close</i>
+			</a>
+		</td>
 	</tr>
 	@endforeach
 	</table>

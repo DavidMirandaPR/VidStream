@@ -54,6 +54,7 @@ Route::post('/search', 'ContentController@contentSearch');
 Route::get('/switchUser','ProfileController@switchUser');
 
 //POSTS
+Route::post('/deleteAccount', 'ProfileController@deleteAcc');
 Route::post('/ticketHandler', 'ProfileController@ticketHandler');
 Route::post('/addGenre', 'ProfileController@addGenre');
 Route::post('/deleteGenre', 'ProfileController@deleteGenre');
@@ -72,7 +73,6 @@ Route::get('profile', function(){
 	$data['usernames'] = Username::where('account_id', '=', $acc)->get();
 	$data['genres']    = Genre::get();
 	$data['genrePref'] = GenrePreferences::where('username_id','=', $user->id)->get();
-
 	$level = Session::get('session_level');
 
 	if($level == 1 || $level == 2)//Free User and Premium User
