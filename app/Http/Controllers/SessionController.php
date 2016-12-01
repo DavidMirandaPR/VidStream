@@ -30,6 +30,7 @@ class SessionController extends Controller
 			$request->session()->put('session_lastName', $account->lastName);
 			$request->session()->put('session_level', $account->level);
     	$request->session()->put('session_username', $UN->username);
+			$request->session()->put('session_UNID', $UN->id);
       $request->session()->put('session_level', $account->level);
 
   		$data    = $request->session()->all();

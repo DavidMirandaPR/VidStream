@@ -39,7 +39,7 @@
 					<a href="#" data-activates="mobile-collapse" class="button-collapse">
 						<i class="material-icons">menu</i>
 					</a>
-			
+
 					<!-- Nav bar Links non collapsed-->
 
 					@if(Request::is('login') || Request::is('register'))
