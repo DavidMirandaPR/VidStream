@@ -116,3 +116,23 @@ Route::group(['prefix' => 'api'], function () {
 		Route::resource('getinfo','APIController');
 	});
 });
+
+//=====================================================
+//		TESTING ROUTES
+//=====================================================
+
+Route::get('/testAdmin', function(){
+	$acc 			   = Session::get('session_account');
+	$username 		   = Session::get('session_username');
+	$user   	       = Username::where('username','=',$username)->where('account_id','=',$acc)->get()->first();
+	$data['usernames'] = Username::where('account_id', '=', $acc)->get();
+	$data['genres']    = Genre::get();
+	$data['genrePref'] = GenrePreferences::where('username_id','=', $user->id)->get();
+	$level = Session::get('session_level');
+
+	$data['supportTickets'] = SupportTicket::get();
+	$data['accounts']		= Account::get();
+	return view('test.admin', $data);//Admin VIEW
+	
+
+});

@@ -19,6 +19,7 @@
 @section('content')
 
 
+
 	@if(array_key_exists("available", $data))
 		<h1>There isn't genres in your account, please go to profile and add a genre.</h1>
 	@else

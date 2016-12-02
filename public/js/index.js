@@ -3,6 +3,7 @@ $(document).ready(function(){
 		$('select').material_select();
 		$('ul.tabs').tabs();
 		$('.carousel').carousel();
+		$('#myTable').DataTable();
 });
 
 //Usernames Handler
