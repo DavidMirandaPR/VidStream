@@ -79,30 +79,30 @@ class RegistrationController extends Controller
              ->whereNull('username_id')
              ->update(['username_id' => $userName->id]);
 
-      //==============================================
-      //      Creating a Genre Preferences Instance
-      //==============================================
-      $genrePref              = new GenrePreferences;
-      $genrePref->account_id  = $account->id;
-      $genrePref->username_id = $userName->id;
-      $genrePref->save();
-      //==============================================
-      //      Creating a History Preferences Instance
-      //==============================================
-      $userHistory              = new UserHistory;
-      $userHistory->account_id  = $account->id;
-      $userHistory->username_id = $userName->id;
-      $userHistory->save();
+      // //==============================================
+      // //      Creating a Genre Preferences Instance
+      // //==============================================
+      // $genrePref              = new GenrePreferences;
+      // $genrePref->account_id  = $account->id;
+      // $genrePref->username_id = $userName->id;
+      // $genrePref->save();
+      // //==============================================
+      // //      Creating a History Preferences Instance
+      // //==============================================
+      // $userHistory              = new UserHistory;
+      // $userHistory->account_id  = $account->id;
+      // $userHistory->username_id = $userName->id;
+      // $userHistory->save();
 
-      //=======================================================
-      //  Update Genre Pref ID and History ID on Username Table
-      //=======================================================
+      // //=======================================================
+      // //  Update Genre Pref ID and History ID on Username Table
+      // //=======================================================
 
-      Username::where('id', '=', $userName->id)
-              ->update(['genrePreference_id' => $genrePref->id]);
+      // Username::where('id', '=', $userName->id)
+      //         ->update(['genrePreference_id' => $genrePref->id]);
 
-      Username::where('id', '=', $userName->id)
-              ->update(['history_id' => $userHistory->id]);
+      // Username::where('id', '=', $userName->id)
+      //         ->update(['history_id' => $userHistory->id]);
 
 
       return redirect('/content');

@@ -35,7 +35,7 @@
 					<li class="tab col s4"><a href="#movies">Movies</a></li>
 				</ul>
 			</div>
-			<!-- Account Tab -->
+<!-- Account Tab -->
 			<div id="account" class="col s12">
 				<h4>{{ Session::get('session_username') }}</h4>
 				<div class="container">
@@ -73,9 +73,9 @@
 					</div>
 				</div>
 			</div>
-			<!-- Username Tab -->
+<!-- Username Tab -->
 			<div id="username" class="col s12">
-				<!-- Add User Container -->
+<!-- Add User Container -->
 				<div class="container">
 				@if(Session::has('message'))
 				<p class="alert {{ Session::get('alert-info') }}">{{ Session::get('message') }}</p>
@@ -89,8 +89,11 @@
 					@foreach($usernames as $user)
 						<li class="collection-item">
 							<div>
-								{{ $user->username }}<a href="#!" class="secondary-content">
+<!-- EDIT USERNAME -->
+								{{ $user->username }}
+								<a href="#!" class="secondary-content">
 									<i onClick="editUser('{{ $user->username }}', '{{ $user->id }}')" class="material-icons edit-btn">send</i>
+<!-- DELETE USERNAME -->
 									@if($user->username != Session::get('session_username'))
 									<i onClick="deleteUser('{{ $user->id }}')" class="material-icons close-btn">close</i>
 									@endif
@@ -99,7 +102,7 @@
 						</li>
 					@endforeach
 				</ul>
-				<!-- ADD USER FORM -->
+<!-- ADD USER FORM -->
 				<div class="container">
 					<div class="row">
 						<form class="col s12" action="/adduser" method="POST">
@@ -112,7 +115,7 @@
 								</div>
 							<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 						</form>
-					<!-- SUPPORT TICKET FORM -->
+<!-- SUPPORT TICKET FORM -->
 						<form class="col s12" action="/support" method="POST">
 								<div class="row">
 									<div class="input-field col s6">
@@ -127,9 +130,9 @@
 				</div>
 			</div>
 		</div>
-			<!-- Movies Tab -->
+<!-- Movies Tab -->
 			<div id="movies" class="col s12">
-				<!-- Movies Container -->
+<!-- Movies Container -->
 				<div class="container">
 					@if(Session::has('message'))
 					<p class="alert {{ Session::get('alert-info') }}">{{ Session::get('message') }}</p>
@@ -148,7 +151,7 @@
 							</li>
 						@endforeach
 					</ul>
-					<!-- Add Genres USER FORM -->
+<!-- Add Genres USER FORM -->
 					<div class="container">
 						<div class="row">
 							<form class="col s12" action="/addGenre" method="POST">

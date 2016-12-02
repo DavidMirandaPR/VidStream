@@ -93,12 +93,6 @@ class ProfileController extends Controller
         }
     }
 
-
-	public function randomName(Request $request)
-		{
-			return "I think this worked";
-		}
-
     public function ticketCreate(Request $request)
     {
         //========================================
@@ -125,7 +119,13 @@ class ProfileController extends Controller
         //===================================
 
         $username = $request->input('un');
+				$accountID = $request->session()->get('session_account');
+				$UN = Username::where('account_id','=', $accountID)->where('username','=', $username)->get()->first();
+
         $request->session()->put('session_username', $username);
+
+				$request->session()->put('session_UNID', $UN->id);
+
         return redirect('/content');
     }
 
@@ -192,8 +192,8 @@ class ProfileController extends Controller
         //======================================
 
         $accID     = $request->input('accountID');
-        $usernames = Username::where('account_id','=', $acciD)->get();
-        dd($usernames);
+        $usernames = Username::where('account_id','=', $accID)->get();
+        //dd($usernames);
         if($accID)
         {
             foreach($usernames as $user)

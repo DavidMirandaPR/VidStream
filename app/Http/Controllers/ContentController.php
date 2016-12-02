@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Content;
 use App\SupportTicket;
 use App\GenrePreferences;
+
 class ContentController extends Controller
 {
     /**
@@ -23,17 +24,27 @@ class ContentController extends Controller
     public function index(Request $request)
     {
 
+	    $userID = $request->session()->get('session_UNID');
+		$genrePref = GenrePreferences::where('username_id','=', $userID)->get();
+
         if($request->session()->exists('session_account'))
         {
-            $data['genres'] = ['Action','Comedy','Horror', 'War'];
-
-    			for($i = 0; $i < count($data['genres']); $i++)
+    		foreach($genrePref as $g)
+            {
+			 	if($g->genre)
                 {
-    				$data[$data['genres'][$i]] = Content::where('genre', 'LIKE', '%' . $data['genres'][$i] . '%')
-                            					->orderBy('year', 'desc')
-                               					->limit(15)->get();
-    			}
-
+    				$data[$g->genre] = Content::where('genre', 'LIKE', '%' . $g->genre . '%')
+                            				  ->orderBy('year', 'desc')
+                               				  ->limit(15)->get();
+					if(array_key_exists("available", $data))
+                    {
+						unset($data["available"]);
+					}
+				} else 
+                {
+					$data['available'] = false;
+				}
+    		}
             return view('content-data.content', ['data' => $data]);
         }
         else

@@ -1,6 +1,5 @@
 @extends('layouts.layout')
 @section('title', 'Content')
-	
 @section('dropdown-structure')
 	<ul id="dropdown" class="dropdown-content">
 		<li><a href="{{ url('profile') }}">Profile</a></li>
@@ -18,24 +17,34 @@
 	</ul>
 @endsection
 @section('content')
-{{dd($genrePref)}}
-	<main>
-		<form action="/search" method="POST">
-			<div>
-				<input type="text" name="movieTitle">
-			</div>	
-			<input type="submit" name="action" value="Search">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-		</form>
-		@foreach($data['genres'] as $genre)
-			<h4 class="carousel-title">{{ $genre }}</h4>
-			<div class="movies-grid">
+
+
+	@if(array_key_exists("available", $data))
+		<h1>There isn't genres in your account, please go to profile and add a genre.</h1>
+	@else
+		<?php
+			$genre_titles = array_keys($data);
+		?>
+
+		@foreach($genre_titles as $genre)
+			<h4>{{ $genre }}</h4>
+			<div class="carousel">
 				@foreach($data[$genre] as $item)
-						<span class="col s6">
-							<a href="http://vidstream.tv/content/movie?imdbID={{$item->imdbID}}"><img src="{{ $item->poster }}" width="200px" height="150px" alt="{{ $item->title }}"></a>
-						</span>
+						<a class="carousel-item" href="http://vidstream.tv/content/movie?imdbID={{$item->imdbID}}"><img src="{{ $item->poster }}"></a>
 				@endforeach
 			</div>
 		@endforeach
-	</main>
+	@endif
+
+
+	{{-- <main>
+		<form action="/search" method="POST">
+			<div>
+				<input type="text" name="movieTitle">
+			</div>
+			<input type="submit" name="action" value="Search">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+		</form>
+		--}}
+
 @endsection

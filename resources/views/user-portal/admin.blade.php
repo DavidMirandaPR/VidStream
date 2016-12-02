@@ -1,9 +1,31 @@
 @extends('layouts.layout')
 @section('title', 'Admin')
 @section('header')
+
 <meta name="csrf-token" content="{!! Session::token() !!}">
 
 @endsection
+
+@section('dropdown-structure')
+	<ul id="dropdown" class="dropdown-content">
+		<li><a href="{{ url('profile') }}">Profile</a></li>
+		<li class="divider"></li>
+		<li><a href="{{ url('usernames') }}">Switch User</a></li>
+		<li class="divider"></li>
+		<li><a href="{{ url('logout') }}">Logout</a></li>
+	</ul>
+@endsection
+@section('usertab')
+	<ul id="nav-mobile" class="right hide-on-med-and-down">
+		<li>
+			<a href="{{ url('content') }}">Content</a>
+		</li>
+		<li>
+			<a class="dropdown-button" href="#!" data-activates="dropdown">{{Session::get('session_username')}}<i class="material-icons right">arrow_drop_down</i></a>
+		</li>
+	</ul>
+@endsection
+
 @section('content')
 	<div class="container">
 		<ul class="collection with-header">
