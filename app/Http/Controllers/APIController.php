@@ -56,17 +56,17 @@ class APIController extends Controller
                 'imdbVotes','type'];
 
         foreach($content as $c)
-        {   
+        {
             if($c['title'] == null)
             {
                 $url    = "http://www.omdbapi.com/?i=".$c->imdbID;
                 $json   = file_get_contents($url);
                 $obj    = json_decode($json, true);
-    
+
                 if($obj['Type'] == 'movie' && $c['Type'] == null)
                 {
                     //Store Attributes changes
-                    for ($i=0; $i < 16; $i++) { 
+                    for ($i=0; $i < 16; $i++) {
                         $cont = Content::where('imdbID', '=', $obj['imdbID'])
                                 ->whereNull($DBatt[$i])
                                 ->update([$DBatt[$i] => $obj[$att[$i]]]);
@@ -84,7 +84,7 @@ class APIController extends Controller
      */
 
     //============================
-    //          POST    
+    //          POST
     //Function used to populate DB with movies/series
     //============================
     public function store(Request $request)
@@ -114,13 +114,13 @@ class APIController extends Controller
             $json = file_get_contents($url);
             $obj = json_decode($json, true);
             $cont = Content::where('imdbID', '=', $obj['imdbID'])->delete();
-            
+
             echo "Creating new Instante with the imdbID attribute";
             $content = new Content;
             $content->imdbID = $obj['imdbID'];
             $content->save();
             //dd($content);
-            for ($i=0; $i < 16; $i++) 
+            for ($i=0; $i < 16; $i++)
             {
                 echo "Updating the ".$DBatt[$i]." of the instance <br>";
 
@@ -128,20 +128,20 @@ class APIController extends Controller
                         ->whereNull($DBatt[$i])
                         ->update([$DBatt[$i] => $obj[$att[$i]]]);
             }
-        
+
         }
         else
-        {  
+        {
            //Title Parameter
            $movies = Movies::get();
-  
+
            foreach ($movies as $m) {
-  
+
             $url = "http://www.omdbapi.com/?t=".rawurlencode($m['title']);
             $json = file_get_contents($url);
             $obj = json_decode($json, true);
             if(array_key_exists('imdbID', $obj))
-            {   
+            {
                 $content = new Content;
                 $content->imdbID = $obj['imdbID'];
                 $content->save();
@@ -149,7 +149,7 @@ class APIController extends Controller
         }
     }
 }
-   
+
     /**
      * Display the specified resource.
      *
@@ -158,45 +158,6 @@ class APIController extends Controller
      */
     public function show($id)
     {
-     //------------URL STATUS CHECKER--------------------   
-
-        // $instance = Content::where('imdbID', '=', 'tt0138862')
-        //             ->get()->first();
-        // //echo $instance['poster'];
-        // $url = $instance['poster'];
-
-        // //=====================================
-        //     $ch = curl_init();
-        //     curl_setopt($ch, CURLOPT_URL, $url);
-        //     curl_setopt($ch, CURLOPT_HEADER, 1);
-        //     curl_setopt($ch , CURLOPT_RETURNTRANSFER, 1);
-        //     $data = curl_exec($ch);
-        //     $headers = curl_getinfo($ch);
-        //     curl_close($ch);
-        // //======================================
-
-
-
-        // $check_url_status = $headers['http_code'];
-
-        // if ($check_url_status == '200')
-        //    echo "Link Works";
-        // else
-        //    echo "Broken Link";
-     //------------------------------------------------------------
-
-
-
-     //-------------NO POSTER AND NULL INSTANCES CHECKER ----------
-        // $noPoster = Content::where('poster','=', 'N/A')
-        //                 ->delete();
-        // echo "Delete of Instances with no poster COMPLETED <br>";
-
-        // $noTitle  = Content::where('title', '=', null)
-        //                 ->delete();
-        // echo "Delete of Instances with no title COMPLETED <br>";
-     //------------------------------------------------------------
-
 
     }
 

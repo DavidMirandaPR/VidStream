@@ -23,22 +23,6 @@
 	@if(array_key_exists("available", $data))
 		<h1>There isn't genres in your account, please go to profile and add a genre.</h1>
 	@else
-		<?php
-			$genre_titles = array_keys($data);
-		?>
-
-		@foreach($genre_titles as $genre)
-			<h4>{{ $genre }}</h4>
-			<div class="carousel">
-				@foreach($data[$genre] as $item)
-						<a class="carousel-item" href="http://vidstream.tv/content/movie?imdbID={{$item->imdbID}}"><img src="{{ $item->poster }}"></a>
-				@endforeach
-			</div>
-		@endforeach
-	@endif
-
-
-	{{-- <main>
 		<form action="/search" method="POST">
 			<div>
 				<input type="text" name="movieTitle">
@@ -46,6 +30,26 @@
 			<input type="submit" name="action" value="Search">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 		</form>
-		--}}
+		<?php
+			$genre_titles = array_keys($data);
+		?>
 
+		@foreach($genre_titles as $genre)
+			<div class="">
+
+			</div>
+			<div class="section">
+				<h4 class="flow-text white-text">{{ $genre }}</h4>
+				<div class="divider"></div>
+				<div class="movies-grid">
+					@foreach($data[$genre] as $item)
+						<span>
+							<a href="http://vidstream.tv/content/movie?imdbID={{$item->imdbID}}"><img width="200px" height="150px" src="{{ $item->poster }}"></a>
+						</span>
+					@endforeach
+			</div>
+			</div>
+
+		@endforeach
+	@endif
 @endsection

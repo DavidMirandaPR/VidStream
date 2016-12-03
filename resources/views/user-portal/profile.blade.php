@@ -37,7 +37,7 @@
 			</div>
 			<!-- Account Tab -->
 			<div id="account" class="col s12">
-				<h4>{{ Session::get('session_username') }}</h4>
+				<h4 class="flow-text white-text">{{ Session::get('session_username') }}</h4>
 				<div class="container">
 					<div class="row">
 						<form class="col s12" action="/edit" method="POST">

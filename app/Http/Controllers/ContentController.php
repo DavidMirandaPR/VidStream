@@ -25,13 +25,13 @@ class ContentController extends Controller
     {
 			  $userID = $request->session()->get('session_UNID');
 				$genrePref = GenrePreferences::where('username_id','=', $userID)->get();
-
+				
         if($request->session()->exists('session_account'))
         {
     			foreach($genrePref as $g)
           {
 						if($g->genre){
-					
+
 	    				$data[$g->genre] = Content::where('genre', 'LIKE', '%' . $g->genre . '%')
 	                            					->orderBy('year', 'desc')
 	                               				->limit(15)->get();
@@ -42,6 +42,7 @@ class ContentController extends Controller
 							$data['available'] = false;
 						}
     			}
+
             return view('content-data.content', ['data' => $data]);
         }
         else
