@@ -18,7 +18,7 @@ class CreateContentTable extends Migration
             $table->string('title')->nullable();
             $table->integer('year')->nullable();
             $table->string('rated')->nullable();
-            $table->dateTime('Released', 'dd mon yy')->nullable();
+            $table->dateTime('released', 'dd mon yy')->nullable();
             $table->string('runtime')->nullable();
             $table->string('genre')->nullable(); //must be an integer in order to match genre_id from genres table
             $table->string('director')->nullable();
