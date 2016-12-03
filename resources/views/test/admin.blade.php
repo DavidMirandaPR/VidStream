@@ -1,8 +1,9 @@
 @extends('layouts.layout')
 @section('title', 'Admin')
 @section('header')
-
+TEST WEBSITE
 <meta name="csrf-token" content="{!! Session::token() !!}">
+
 
 @endsection
 
@@ -44,37 +45,39 @@
 			@endforeach
 		</ul>
 	</div>
-<div class="container">
-	<table id="users">
+<div class="display">
+	<table id="accTable">
 
-	<tr id="usr_T">
-	    <th>User ID</th>
-	    <th>Firstname</th>
-	    <th>Lastname</th>
-	    <th>email</th>
-	    <th>password</th>
-	    <th>level</th>
-	    <th>Payment ID</th>
-			<th>Delete Account</th>
-	</tr>
+		<thead>
+			<tr>
+			    <th>ID</th>
+			    <th>Title</th>
+			    <th>Rating</th>
+			    <th>Actors</th>
+			    <th>Year</th>
+			    <th>Rated</th>
+			    <th>Genre</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
 		<!--////////////////////////////////////////////////////////////////////////
 				ACCOUNTS table 	I CAN MANAGE THE WHOLE ACCOUNTS TABLE
 		/////////////////////////////////////////////////////////////////////////-->
-	@foreach ($accounts as $acc)
-	<tr id="users_rows">
-		<td>{{$acc->id}}</td>
-		<td>{{$acc->firstName}}</td>
-		<td>{{$acc->lastName}}</td>
-		<td>{{$acc->email}}</td>
-		<td>{{$acc->password}}</td>
-		<td>{{$acc->level}}</td>
-		<td>{{$acc->Payment_ID}}</td>
+	@foreach ($movies as $movie)
+	<tbody>
+		<td id="mID">{{$movie->imdbID}}</td>
+		<td>{{$movie->title}}</td>
+		<td>{{$movie->imdbRating}}</td>
+		<td>{{$movie->actors}}</td>
+		<td>{{$movie->year}}</td>
+		<td>{{$movie->rated}}</td>
+		<td>{{$movie->genre}}</td>
 		<td>
 			<a href="#" class="">
-				<i onClick="deleteAcc('{{ $acc->id }}')" class="material-icons">close</i>
+				<i onClick="" class="material-icons">close</i>
 			</a>
 		</td>
-	</tr>
+	</tbody>
 	@endforeach
 	</table>
 </div>

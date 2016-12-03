@@ -3,6 +3,7 @@ $(document).ready(function(){
 		$('select').material_select();
 		$('ul.tabs').tabs();
 		$('.carousel').carousel();
+		$('#myTable').DataTable();
 });
 
 //Usernames Handler
@@ -42,10 +43,22 @@ function deleteGenre(value) {
 	});
 }
 
+
 function ticketHandler(valueID) {
 	$.post('/ticketHandler', {
 		_token: $('meta[name=csrf-token]').attr('content'),
 		ticketID: valueID
+	}).done(function(msg){
+		alert("Y");
+		window.location = "http://vidstream.tv/profile";
+	});
+}
+
+
+function deleteAcc(valueID) {
+	$.post('/deleteAccount', {
+		_token: $('meta[name=csrf-token]').attr('content'),
+		accountID: valueID
 	}).done(function(msg){
 		alert(msg);
 		window.location = "http://vidstream.tv/profile";

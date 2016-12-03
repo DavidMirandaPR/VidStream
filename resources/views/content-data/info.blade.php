@@ -34,7 +34,7 @@
 			<div class="movie-text">
 				<h4>{{ $movie->title }} ({{ $movie->year }})</h4>
 				<h6>Rated {{ $movie->rated }}</h6>
-				<h6>Release date: {{ $movie->release }}</h6>
+				<h6>Release date: {{ $movie->released }}</h6>
 				<h6>Runtime: {{ $movie->runtime }}</h6>
 				<h6>Genre: {{ $movie->genre }}</h6>
 				<h6>Director: {{ $movie->director }}</h6>

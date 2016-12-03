@@ -54,6 +54,7 @@ Route::post('/search', 'ContentController@contentSearch');
 Route::get('/switchUser','ProfileController@switchUser');
 
 //POSTS
+Route::post('/deleteAccount', 'ProfileController@deleteAcc');
 Route::post('/ticketHandler', 'ProfileController@ticketHandler');
 Route::post('/addGenre', 'ProfileController@addGenre');
 Route::post('/deleteGenre', 'ProfileController@deleteGenre');
@@ -72,7 +73,6 @@ Route::get('profile', function(){
 	$data['usernames'] = Username::where('account_id', '=', $acc)->get();
 	$data['genres']    = Genre::get();
 	$data['genrePref'] = GenrePreferences::where('username_id','=', $user->id)->get();
-
 	$level = Session::get('session_level');
 
 	if($level == 1 || $level == 2)//Free User and Premium User
@@ -115,4 +115,24 @@ Route::group(['prefix' => 'api'], function () {
 		//RESTful Controller @ Vidstream.tv/api/v1/getinfo
 		Route::resource('getinfo','APIController');
 	});
+});
+
+//=====================================================
+//		TESTING ROUTES
+//=====================================================
+
+Route::get('/testAdmin', function(){
+	$acc 			   = Session::get('session_account');
+	$username 		   = Session::get('session_username');
+	$user   	       = Username::where('username','=',$username)->where('account_id','=',$acc)->get()->first();
+	$data['usernames'] = Username::where('account_id', '=', $acc)->get();
+	$data['genres']    = Genre::get();
+	$data['genrePref'] = GenrePreferences::where('username_id','=', $user->id)->get();
+	$level = Session::get('session_level');
+
+	$data['supportTickets'] = SupportTicket::get();
+	$data['accounts']		= Account::get();
+	return view('test.admin', $data);//Admin VIEW
+	
+
 });

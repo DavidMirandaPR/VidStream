@@ -25,7 +25,7 @@ class ContentController extends Controller
     {
 			  $userID = $request->session()->get('session_UNID');
 				$genrePref = GenrePreferences::where('username_id','=', $userID)->get();
-				
+
         if($request->session()->exists('session_account'))
         {
     			foreach($genrePref as $g)
@@ -42,7 +42,6 @@ class ContentController extends Controller
 							$data['available'] = false;
 						}
     			}
-
             return view('content-data.content', ['data' => $data]);
         }
         else
