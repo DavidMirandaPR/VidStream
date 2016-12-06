@@ -57,11 +57,13 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 ***
 ### SQLite Setup
 <div><a href="http://sqlitestudio.pl/?act=download"><img  width="150" src="https://iworkautomation.com/numbers/gfx/sqlite-logo.png" style="max-width:100%;"></a></div>
+
 1. You can download SQLite Studio here http://sqlitestudio.pl/?act=download.
 2. Follow the setup instructions and install it.
 
 ***
 ### Composer RUN
+<div><a href="https://getcomposer.org/"><img  width="150" src="https://getcomposer.org/img/logo-composer-transparent.png" style="max-width:100%;"></a></div>
 
 1. If you have installed composer in your computer you should be able to open a command prompt aiming to "/vidstream.tv" and run the command 'composer install' and then 'composer update' everything should run fine.
 
