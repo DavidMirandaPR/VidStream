@@ -12,7 +12,7 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 ### Requirements
 
 1. PHP 7.0
-2. Laravel 5.0
+2. <a href="https://laravel.com/">Laravel 5.0</a>
 3. AMPPS (This includes PHP 7.0)
 4. Composer
 5. Internet Connection (CSS Libraries are loaded through the internet)
