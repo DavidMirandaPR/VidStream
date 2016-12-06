@@ -56,7 +56,7 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 
 ***
 ### SQLite Setup
-<a width=200px href="http://sqlitestudio.pl/?act=download"><img src="https://iworkautomation.com/numbers/gfx/sqlite-logo.png" style="max-width:100%;"></a>
+<a href="http://sqlitestudio.pl/?act=download"><img  width="150" src="https://iworkautomation.com/numbers/gfx/sqlite-logo.png" style="max-width:100%;"></a>
 1. You can download SQLite Studio here http://sqlitestudio.pl/?act=download.
 2. Follow the setup instructions and install it.
 
