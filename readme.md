@@ -48,4 +48,17 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 1. If you have installed composer in your computer you should be able to open a command prompt aiming to "/vidstream.tv" and run the command 'composer install' and then 'composer update' everything should run fine.
 
 ***
-###
+### Logging in for Testing
+
+1. The framework let us create a seed so that we dont have to create an account everytime we rolled back our database.
+2. It has the following properties:
+	email: luis@luis
+    password: luis
+3. This account has an account level of 1 'Free User'
+
+***
+### Getting Movie Information
+1. To add a specific movie you need to go to "http://vidstream.tv/api/v1/getinfo".
+2. There should be an input box and two buttons.
+3. In the input box you need to write a title of a movie THE EXACT TITLE OF THE MOVIE in order to save it to Database.
+4. A message will be prompted that each movie property has been saved and the movie stored successfully.
