@@ -16,6 +16,13 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 6. SQLite
 
 ***
+### QUICK ACCESS
+
+1. [Installation](https://github.com/DavidMirandaPR/VidStream#installation)
+2. [AMPPS SETUP](https://github.com/DavidMirandaPR/VidStream#ampps-setup)
+
+
+***
 ### Installation
 
 1. Install AMPPS (This includes PHP 7.0)
