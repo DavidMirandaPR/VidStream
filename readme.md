@@ -11,6 +11,7 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 3. AMPPS (This includes PHP 7.0)
 4. Composer
 5. Internet Connection (CSS Libraries are loaded through the internet)
+6. SQLite
 ***
 ### Installation
 
@@ -31,8 +32,11 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 4. Use "vidstream.tv" as domain.
 5. The domain path should be generated when writing the domain as ".../Ampps/www/vidstream.tv".
 6. At the end of the domain path you should add a "/public" and the final result should be /Ampps/www/vidstream.tv/public" since in that path is where we will be working on.
-
+***
 ### Running APACHE
 
 1. In AMPPS you should see a Start button below the apache logo, if the server doesn't start right away click it to start it.
 2. Starting the Apache server enable us to now go to a browser and write "vidstream.tv" in the address bar and should redirect you to the login page of VIDSTREAM.
+***
+### SQLite Setup
+1. 
