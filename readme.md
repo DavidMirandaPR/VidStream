@@ -4,6 +4,7 @@
 ### What is VidStream?
 
 Vidstream is a project created for our Computer Engineering class Computerized System Information in Interamerican University Bayamon Campus. It's function is to simulate Netflix's user, staff, admins, and movie content's database. It does NOT have implemented any playback functionality. No copyright was intended in the making of this project, it's purely educational.
+
 ***
 ### Requirements
 
@@ -13,6 +14,7 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 4. Composer
 5. Internet Connection (CSS Libraries are loaded through the internet)
 6. SQLite
+
 ***
 ### Installation
 
@@ -24,6 +26,7 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 5. Name the file Vidstream.tv
 6. Add Vidstream.tv to the host file.
 7. Add the domain in AMPPS configuration page.
+
 ***
 ### AMPPS Setup
 
@@ -33,16 +36,19 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 4. Use "vidstream.tv" as domain.
 5. The domain path should be generated when writing the domain as ".../Ampps/www/vidstream.tv".
 6. At the end of the domain path you should add a "/public" and the final result should be /Ampps/www/vidstream.tv/public" since in that path is where we will be working on.
+
 ***
 ### Running APACHE
 
 1. In AMPPS you should see a Start button below the apache logo, if the server doesn't start right away click it to start it.
 2. Starting the Apache server enable us to now go to a browser and write "vidstream.tv" in the address bar and should redirect you to the login page of VIDSTREAM.
+
 ***
 ### SQLite Setup
 
 1. You can download SQLite Studio here http://sqlitestudio.pl/?act=download.
 2. Follow the setup instructions and install it.
+
 ***
 ### Composer RUN
 
