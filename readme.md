@@ -39,4 +39,13 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 2. Starting the Apache server enable us to now go to a browser and write "vidstream.tv" in the address bar and should redirect you to the login page of VIDSTREAM.
 ***
 ### SQLite Setup
-1. 
+
+1. You can download SQLite Studio here http://sqlitestudio.pl/?act=download.
+2. Follow the setup instructions and install it.
+***
+### Composer RUN
+
+1. If you have installed composer in your computer you should be able to open a command prompt aiming to "/vidstream.tv" and run the command 'composer install' and then 'composer update' everything should run fine.
+
+***
+###
