@@ -50,6 +50,7 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 
 ***
 ### Running APACHE
+<div><a href="http://ampps.com/download"><img  width="150" src="http://blog.names.co.uk/wp-content/uploads/2014/01/Apache.png" style="max-width:100%;"></a></div>
 
 1. In AMPPS you should see a Start button below the apache logo, if the server doesn't start right away click it to start it.
 2. Starting the Apache server enable us to now go to a browser and write "vidstream.tv" in the address bar and should redirect you to the login page of VIDSTREAM.
