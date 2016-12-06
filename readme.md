@@ -20,7 +20,11 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 
 1. [Installation](https://github.com/DavidMirandaPR/VidStream#installation)
 2. [AMPPS SETUP](https://github.com/DavidMirandaPR/VidStream#ampps-setup)
-
+3. [Running APACHE](https://github.com/DavidMirandaPR/VidStream#running-apache)
+4. [SQLite Setup](https://github.com/DavidMirandaPR/VidStream#sqlite-setup)
+5. [Composer RUN](https://github.com/DavidMirandaPR/VidStream#composer-run)
+6. [Logging in for Testing](https://github.com/DavidMirandaPR/VidStream#logging-in-for-testing)
+7. [Getting Movie Information](https://github.com/DavidMirandaPR/VidStream#getting-movie-information)
 
 ***
 ### Installation
