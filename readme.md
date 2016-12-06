@@ -1,5 +1,5 @@
 
-<img src="https://s11.postimg.org/xi3lbtylf/vidstream.png" style="max-width:100%;">
+<a href="https://github.com/DavidMirandaPR/VidStream"><img src="https://s11.postimg.org/xi3lbtylf/vidstream.png" style="max-width:100%;"></a>
 ***
 ### What is VidStream?
 
