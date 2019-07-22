@@ -1,7 +1,5 @@
 
-<a href="https://github.com/DavidMirandaPR/VidStream"><img src="https://s11.postimg.org/xi3lbtylf/vidstream.png" style="max-width:100%;"></a>
-
-<div>Logo created by:<a href="https://www.facebook.com/jpegprart/">JPEG</a></div>
+## VidStream
 
 ***
 ### What is VidStream?
