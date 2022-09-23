@@ -41,7 +41,7 @@ Vidstream is a project created for our Computer Engineering class Computerized S
 
 ***
 ### AMPPS Setup
-<div><a href="http://ampps.com/download"><img  width="150" src="http://www.softaculous.com/ampps/images/headerlogo.png" style="max-width:100%;"></a></div>
+<div><a href="http://ampps.com/download"><img  width="150" src="https://ampps.com/sitepad-data/uploads//2021/10/headerlogo.png" style="max-width:100%;"></a></div>
 
 1. Inside AMPPS theres a house simbol, clicking it will redirect you to the local homepage of ampps.
 2. Once inside "http://localhost/ampps/" you should be able to see a button labeled "Add Domain" with a globe icon and a plus sign.
